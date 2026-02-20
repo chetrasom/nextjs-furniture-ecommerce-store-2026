@@ -1,4 +1,4 @@
-import { NavLink } from "@/types";
+import { NavLink, Hero } from "@/types";
 
 export const links: NavLink[] = [
     { href: '/', label: 'home' },
@@ -9,4 +9,22 @@ export const links: NavLink[] = [
     { href: '/cart', label: 'cart' },
     { href: '/orders', label: 'orders' },
     { href: '/practices', label: 'practices' },
+];
+
+export const heroes: Hero[] = [
+    {
+        title: "Transform Your Space with Timeless Elegance.",
+        subtitle: "Hundreds of designer products at the best prices.",
+        image: "/images/hero/hero-1.jpg",
+    },
+    {
+        title: "Bring Comfort Home Style Your Space with Us!",
+        subtitle: "Furnishing Dreams",
+        image: "/images/hero/hero-2.jpg",
+    },
+    {
+        title: "Innovative Designs, Endless Comfort",
+        subtitle: "Furniture for the Modern Home",
+        image: "/images/hero/hero-3.jpg",
+    },
 ];

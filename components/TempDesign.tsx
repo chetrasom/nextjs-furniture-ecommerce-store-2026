@@ -17,7 +17,13 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 // Assets
-import { LayoutDashboardIcon, LogOutIcon, SettingsIcon } from "lucide-react";
+import { 
+    LayoutDashboardIcon, 
+    LogOutIcon, 
+    SettingsIcon,
+    MenuIcon,
+    CircleUserIcon
+} from "lucide-react";
 
 const TempDesign = () => {
     const user = true;
@@ -79,22 +85,59 @@ const TempDesign = () => {
     //     )
     // }
 
-    {/* If user does not exist. */}
+    // Mobile
     return (
-        <>
-            {/* <Separator className="bg-orange-400 md:hidden" /> */}
-
-            <div className="flex flex-col-reverse gap-y-3 gap-x-2 md:flex-row md:items-center max-md:p-3">
-                <Button asChild variant={"outline"}>
-                    <Link href='/login'>Login</Link>
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button
+                    size="icon"
+                    variant="outline"
+                >
+                    <CircleUserIcon className='size-5' />
                 </Button>
+            </DropdownMenuTrigger>
 
-                <Button asChild>
-                    <Link href='/signup'>Get Started</Link>
-                </Button>
-            </div>
-        </>
+            <DropdownMenuContent className="min-w-56" align="end">
+                <DropdownMenuItem asChild>
+                    <Link
+                        href='#'
+                    >
+                        <LayoutDashboardIcon />
+                        Login
+                    </Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuSeparator />
+
+                <DropdownMenuItem asChild>
+                    <Link
+                        href='#'
+                    >
+                        <LayoutDashboardIcon />
+                        Register
+                    </Link>
+                </DropdownMenuItem>
+
+            </DropdownMenuContent>
+        </DropdownMenu>
     )
+
+    {/* If user does not exist. */}
+    // return (
+    //     <>
+    //         {/* <Separator className="bg-orange-400 md:hidden" /> */}
+
+    //         <div className="flex flex-col-reverse gap-y-3 gap-x-2 md:flex-row md:items-center max-md:p-3">
+    //             <Button asChild variant={"outline"}>
+    //                 <Link href='/login'>Login</Link>
+    //             </Button>
+
+    //             <Button asChild>
+    //                 <Link href='/signup'>Get Started</Link>
+    //             </Button>
+    //         </div>
+    //     </>
+    // )
 }
 
 export default TempDesign

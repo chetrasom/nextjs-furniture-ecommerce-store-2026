@@ -24,18 +24,18 @@ const Navbar = () => {
 
                 <nav className="h-16 flex items-center justify-between lg:py-10">
                     {/* Mobile */}
-                    <div className="w-full lg:hidden">
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-x-4 md:gap-x-6">
-                                <CartButton />
-                            </div>
-                            <Logo />
-                            <div className="flex items-center gap-x-3 md:gap-x-4">
-                                <Suspense>
-                                    <NavSearchDialog />
-                                </Suspense>
-                                <LinksDropdown />
-                            </div>
+                    <div className="h-full w-full border-b flex items-center justify-between lg:hidden">
+                        {/* Left */}
+                        <Logo />
+
+                        {/* Right */}
+                        <div className="flex items-center gap-x-2">
+                            <Suspense>
+                                <NavSearchDialog />
+                            </Suspense>
+                            <DarkMode />
+                            <TempDesign />
+                            {/* <LinksDropdown /> */}
                         </div>
                     </div>
 
