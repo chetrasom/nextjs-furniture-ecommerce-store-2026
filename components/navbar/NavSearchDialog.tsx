@@ -77,7 +77,10 @@ const NavSearchDialog = () => {
                 </Button>
             </DialogTrigger>
 
-            <DialogContent className="top-[50%] -translate-y-[50%]">
+            <DialogContent 
+                // className="top-[40%] -translate-y-[40%] md:top-[40%] lg:top-[50%] sm:max-w-md"
+                className="top-[40%] -translate-y-[40%]"
+            >
                 <DialogHeader>
                     <DialogTitle className="mb-2 font-kh-kantumruy text-2xl">ស្វែងរកផលិតផល</DialogTitle>
                     <DialogDescription className="font-kh-suwannaphum">

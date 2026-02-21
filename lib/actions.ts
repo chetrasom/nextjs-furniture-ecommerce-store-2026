@@ -1,5 +1,7 @@
 import db from "@/utils/db";
 import { redirect } from "next/navigation";
+// import { notFound } from "next/navigation"
+
 
 export const fetchAllProducts = async ({
     search = ''
@@ -37,6 +39,7 @@ export const fetchSingleProduct = async (productId: string) => {
 
     if (!product) {
         redirect('/products')
+        // notFound() // work to see 404 not found.
     }
 
     return product;

@@ -9,7 +9,7 @@ const ProductRating = ({ productId }: ProductRatingProps) => {
     const rating = 4.2;
     const count = 25;
 
-    const className = `flex gap-1 items-center text-md mt-1 mb-4`;
+    const className = `flex gap-1 items-center text-md`;
     const countValue = `(${count}) reviews`;
 
     return (

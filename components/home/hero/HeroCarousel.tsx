@@ -44,11 +44,13 @@ const HeroCarousel = () => {
                         <CarouselItem className="basis-3/5" key={index}>
                             <Card
                                 className={cn(
-                                    "relative h-full overflow-hidden transition-all duration-500",
+                                    "relative h-full overflow-hidden transition-all duration-500 items-center",
                                     {
                                         "opacity-30": index !== current - 1,
                                     }
                                 )}
+
+                                // NOTE:: Real device: add items-center
                             >
                                 {/* Image */}
                                 <Image
