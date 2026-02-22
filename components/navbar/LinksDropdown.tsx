@@ -1,7 +1,8 @@
-"use client";
-
 // Node modules
 import Link from "next/link";
+import { SignInButton, SignUpButton, SignedIn, SignedOut } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
+import SignOutLink from "./SignOutLink";
 
 // Components
 import { 
@@ -10,36 +11,114 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
     DropdownMenuSeparator,
+    DropdownMenuLabel,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // Constants
 import { links } from "@/data";
 
 // Assets
-import { LuAlignLeft } from 'react-icons/lu';
+import { CircleUserIcon, LogIn, UserPlus, LucideAlignRight } from "lucide-react";
 
-const LinksDropdown = () => {
+const LinksDropdown = async () => {
+    const user = await currentUser();
+    const profileImage = user?.imageUrl;
+
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button variant={"outline"} className='gap-x-3 h-10 max-w-30 w-full px-3 transition lg:max-w-max'>
-                    <LuAlignLeft className='h-[1.3rem] w-[1.3rem] text-primary dark:text-white' />
-                    {/* <UserIcon /> */}
-                    <div className="bg-amber-300">
-                        1
-                    </div>
+            <DropdownMenuTrigger asChild>       
+                <Button 
+                    variant='outline' 
+                    size={user ? 'default' : 'icon'}
+                    className='flex gap-4 max-w-25'
+                >
+                    {profileImage ? (
+                        <>
+                            <Avatar className="h-8 w-8 rounded-lg">
+                                <AvatarImage src={profileImage} />
+                                <AvatarFallback>
+                                {user?.firstName?.charAt(0)}
+                                </AvatarFallback>
+                            </Avatar>
+
+                            <LucideAlignRight className="size-4 opacity-70" />
+                        </>
+                    ) : (
+                        <CircleUserIcon className="size-5" />
+                    )}
                 </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className='w-40 z-10' align='end' sideOffset={10}>
-                {links.map((item) => (
-                    <DropdownMenuItem key={item.label}>
-                        <Link href={item.href}>
-                            {item.label}
-                        </Link>
+            <DropdownMenuContent className="min-w-40" align="end">
+                <SignedOut>
+                    <DropdownMenuItem asChild className="w-full">
+                        <SignInButton mode='modal'>
+                            <button aria-label='login' className='w-full text-left bg-red-300'>
+                                <LogIn className="size-4" />
+                                Login
+                            </button>
+                        </SignInButton>
                     </DropdownMenuItem>
-                ))}
+
+                    <DropdownMenuSeparator />
+
+                    <DropdownMenuItem asChild className="w-full">
+                        <SignUpButton mode='modal'>
+                            <button aria-label='register' className='w-full text-left bg-red-300'>
+                                <UserPlus className="size-4" />
+                                Register
+                            </button>
+                        </SignUpButton>
+                    </DropdownMenuItem>
+                </SignedOut>
+
+                <SignedIn>
+                    <DropdownMenuItem>
+                        <DropdownMenuLabel className="p-0 font-normal">
+                            {user && (
+                                <div className="flex items-center gap-2 px-1 py-1.5 text-sm">
+                                    <Avatar className="rounded-lg">
+                                        <AvatarImage src={user.imageUrl} />
+                                        <AvatarFallback>
+                                            {user.firstName?.charAt(0)}
+                                        </AvatarFallback>
+                                    </Avatar>
+
+                                    <div className="grid flex-1 leading-tight">
+                                        <span className="truncate font-medium">
+                                            {user.fullName}
+                                        </span>
+                                        <span className="truncate text-xs text-muted-foreground">
+                                            {user.primaryEmailAddress?.emailAddress}
+                                        </span>
+                                    </div>
+                                </div>
+                            )}
+                        </DropdownMenuLabel>
+                    </DropdownMenuItem>
+
+                    <DropdownMenuSeparator />
+
+                    {links.map((link) => {
+                        return (
+                            <DropdownMenuItem key={link.href}>
+                                <Link href={link.href} className='capitalize w-full'>
+                                    {link.label}
+                                </Link>
+                            </DropdownMenuItem>
+                        );
+                    })}
+
+                    <DropdownMenuSeparator />
+
+                    <DropdownMenuItem>
+                        <SignOutLink />
+                    </DropdownMenuItem>
+
+                </SignedIn>
+                
             </DropdownMenuContent>
         </DropdownMenu>
     )

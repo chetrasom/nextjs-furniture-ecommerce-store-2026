@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Kantumruy_Pro, Suwannaphum } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from '@clerk/nextjs'
 
 // Providers
 import Providers from "./providers";
@@ -49,15 +50,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${kantumruy.variable} ${suwannaphum.variable} antialiased`}>
-        <Providers>
-          <Navbar />
-          <ContainerWrapper className="overflow-hidden pt-28 pb-16 lg:pt-32 xl:pt-40">
-            {children}
-          </ContainerWrapper>
-        </Providers>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${kantumruy.variable} ${suwannaphum.variable} antialiased`}>
+          <Providers>
+            <Navbar />
+            <ContainerWrapper className="overflow-hidden pt-28 pb-16 lg:pt-32 xl:pt-40">
+              {children}
+            </ContainerWrapper>
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

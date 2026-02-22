@@ -14,7 +14,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // Assets
 import { 
@@ -28,62 +28,62 @@ import {
 const TempDesign = () => {
     const user = true;
 
-    // if (user) {
-    //     return (
-    //         <DropdownMenu>
-    //             <DropdownMenuTrigger asChild>
-    //                 <Button
-    //                     size="icon"
-    //                     variant="ghost"
-    //                 >
-    //                     <Avatar className='rounded-lg'>
-    //                         <AvatarImage src="" />
-    //                         <AvatarFallback>CN</AvatarFallback>
-    //                     </Avatar>
-    //                 </Button>
-    //             </DropdownMenuTrigger>
+    if (user) {
+        return (
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Button
+                        size="icon"
+                        variant="ghost"
+                    >
+                        <Avatar className='rounded-lg'>
+                            <AvatarImage src="" />
+                            <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                    </Button>
+                </DropdownMenuTrigger>
 
-    //             <DropdownMenuContent className="min-w-56" align="end">
-    //                 <DropdownMenuLabel className="p-0 font-normal">
-    //                     <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-    //                         <Avatar className='rounded-lg'>
-    //                             <AvatarImage src="" />
-    //                             <AvatarFallback>CN</AvatarFallback>
-    //                         </Avatar>
+                <DropdownMenuContent className="min-w-56" align="end">
+                    <DropdownMenuLabel className="p-0 font-normal">
+                        <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                            <Avatar className='rounded-lg'>
+                                <AvatarImage src="" />
+                                <AvatarFallback>CN</AvatarFallback>
+                            </Avatar>
 
-    //                         <div className="grid flex-1 text-sm text-left leading-tight">
-    //                             <div className="truncate font-medium">Milk Coffee</div>
-    //                             <div className="truncate text-xs">milkcoffee@gmail.com</div>
-    //                         </div>
-    //                     </div>
-    //                 </DropdownMenuLabel>
+                            <div className="grid flex-1 text-sm text-left leading-tight">
+                                <div className="truncate font-medium">Milk Coffee</div>
+                                <div className="truncate text-xs">milkcoffee@gmail.com</div>
+                            </div>
+                        </div>
+                    </DropdownMenuLabel>
 
-    //                 <DropdownMenuSeparator />
+                    <DropdownMenuSeparator />
 
-    //                 <DropdownMenuGroup>
-    //                 <DropdownMenuItem asChild>
-    //                     <Link
-    //                         href='/admin/dashboard'
-    //                     >
-    //                         <LayoutDashboardIcon />
-    //                         Dashboard
-    //                     </Link>
-    //                 </DropdownMenuItem>
+                    <DropdownMenuGroup>
+                    <DropdownMenuItem asChild>
+                        <Link
+                            href='/admin/dashboard'
+                        >
+                            <LayoutDashboardIcon />
+                            Dashboard
+                        </Link>
+                    </DropdownMenuItem>
 
-    //                 <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-    //                     <SettingsIcon />
-    //                     Settings
-    //                 </DropdownMenuItem>
+                    <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                        <SettingsIcon />
+                        Settings
+                    </DropdownMenuItem>
 
-    //                     <DropdownMenuItem>
-    //                         <LogOutIcon />
-    //                         Log out
-    //                     </DropdownMenuItem>
-    //                 </DropdownMenuGroup>
-    //             </DropdownMenuContent>
-    //         </DropdownMenu>
-    //     )
-    // }
+                        <DropdownMenuItem>
+                            <LogOutIcon />
+                            Log out
+                        </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                </DropdownMenuContent>
+            </DropdownMenu>
+        )
+    }
 
     // Mobile
     return (

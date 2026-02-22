@@ -72,8 +72,8 @@ const NavSearchDialog = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="outline" size="icon" className="h-10">
-                    <SearchIcon className="h-[1.2rem] w-[1.2rem] text-primary dark:text-custom-white" />
+                <Button variant="outline" size="icon">
+                    <SearchIcon className="h-[1.2rem] w-[1.2rem] text-primary" />
                 </Button>
             </DialogTrigger>
 

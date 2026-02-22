@@ -9,10 +9,10 @@ import Logo from "./Logo";
 import NavSearch from "./NavSearch";
 import LinksDropdown from "./LinksDropdown";
 import NavSearchDialog from "./NavSearchDialog";
-import CartButton from "./CartButton";
+// import CartButton from "./CartButton";
 import DarkMode from "./DarkMode";
-
-import TempDesign from "../TempDesign";
+import UserMenu from "./UserMenu";
+import ClientOnly from "../global/ClientOnlyHydration";
 
 const Navbar = () => {
     return (
@@ -25,17 +25,19 @@ const Navbar = () => {
                 <nav className="h-16 flex items-center justify-between lg:py-10">
                     {/* Mobile */}
                     <div className="h-full w-full border-b flex items-center justify-between lg:hidden">
-                        {/* Left */}
                         <Logo />
 
-                        {/* Right */}
                         <div className="flex items-center gap-x-2">
                             <Suspense>
                                 <NavSearchDialog />
                             </Suspense>
-                            <DarkMode />
-                            <TempDesign />
-                            {/* <LinksDropdown /> */}
+
+                            {/* Fix Hydration error */}
+                            <ClientOnly>
+                                <DarkMode />
+                            </ClientOnly>
+
+                            <LinksDropdown />
                         </div>
                     </div>
 
@@ -47,9 +49,11 @@ const Navbar = () => {
                                 <NavSearch />
                             </Suspense>
                             <div className="flex items-center gap-x-2">
-                                <TempDesign />
-                                <DarkMode />
-                                {/* <LinksDropdown /> */}
+                                <UserMenu />
+                                {/* Fix Hydration error */}
+                                <ClientOnly>
+                                    <DarkMode />
+                                </ClientOnly>
                             </div>
                         </div>
                     </div>

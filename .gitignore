@@ -45,3 +45,6 @@ zDevelop.txt
 next-env.d.ts
 
 /lib/generated/prisma
+
+# clerk configuration (can include secrets)
+/.clerk/
