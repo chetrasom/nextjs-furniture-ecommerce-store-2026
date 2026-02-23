@@ -8,7 +8,8 @@ export const links: NavLink[] = [
     { href: '/reviews', label: 'reviews' },
     { href: '/cart', label: 'cart' },
     { href: '/orders', label: 'orders' },
-    { href: '/practices', label: 'practices' },
+    // { href: '/practices', label: 'practices' },
+    { href: '/admin/sales', label: 'dashboard' },
 ];
 
 export const heroes: Hero[] = [
@@ -27,4 +28,10 @@ export const heroes: Hero[] = [
         subtitle: "Furniture for the Modern Home",
         image: "/images/hero/hero-3.jpg",
     },
+];
+
+export const adminLinks: NavLink[] = [
+    { href: '/admin/sales', label: 'sales' },
+    { href: '/admin/products', label: 'my products' },
+    { href: '/admin/products/create', label: 'create product' },
 ];

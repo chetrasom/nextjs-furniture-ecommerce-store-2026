@@ -1,7 +1,7 @@
 // Node modules
 import Link from "next/link";
 import { SignInButton, SignUpButton, SignedIn, SignedOut } from '@clerk/nextjs';
-import { currentUser } from '@clerk/nextjs/server';
+import { currentUser, auth } from '@clerk/nextjs/server';
 import SignOutLink from "./SignOutLink";
 
 // Components
@@ -25,6 +25,9 @@ import { CircleUserIcon, LogIn, UserPlus, LucideAlignRight } from "lucide-react"
 const LinksDropdown = async () => {
     const user = await currentUser();
     const profileImage = user?.imageUrl;
+
+    const { userId } = await auth();
+    const isAdmin = userId === process.env.NEXT_PUBLIC_ADMIN_USER_ID;
 
     return (
         <DropdownMenu>
@@ -102,6 +105,8 @@ const LinksDropdown = async () => {
                     <DropdownMenuSeparator />
 
                     {links.map((link) => {
+                        if (link.label === 'dashboard' && !isAdmin) return null;
+
                         return (
                             <DropdownMenuItem key={link.href}>
                                 <Link href={link.href} className='capitalize w-full'>
