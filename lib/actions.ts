@@ -29,6 +29,16 @@ const getAuthUser = async () => {
     return user;
 };
 
+const getAdminUser = async () => {
+    const user = await currentUser();
+
+    if (user?.id !== process.env.NEXT_PUBLIC_ADMIN_USER_ID) {
+        redirect("/")
+    }
+
+    return user;
+};
+
 // # ⭐⭐⭐ Homepage
 export const fetchAllProducts = async ({
     search = ''
@@ -108,7 +118,7 @@ export const fetchSingleProduct = async (productId: string) => {
     //     }
     // };
 
-// ✅===> CreateProductAction Version-02 - Zod Validation.
+// ⚠️===> CreateProductAction Version-02 - Zod Validation.
     // export const createProductAction = async (
     //     prevState: unknown,
     //     formData: FormData
@@ -180,4 +190,17 @@ export const createProductAction = async (
     }
 
     redirect('/admin/products');
+};
+
+// ⭐ Fetch Admin Products
+export const fetchAdminProducts = async () => {
+    await getAdminUser();
+    
+    const products = await db.product.findMany({
+        orderBy: {
+            createdAt: 'desc',
+        },
+    });
+
+    return products;
 };
