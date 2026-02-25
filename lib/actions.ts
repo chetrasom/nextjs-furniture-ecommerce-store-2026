@@ -3,10 +3,13 @@
 import db from "@/utils/db";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-// import { notFound } from "next/navigation"
+
 // Schemas
-import { productSchema } from "@/utils/schemas";
+import { productSchema, imageSchema } from "@/utils/schemas";
 import { validateWithZodSchema } from "@/utils/schemas";
+
+// Supabase function
+import { uploadImage } from "@/utils/supabase";
 
 // ⭐⭐⭐ # Helper Functions
 const renderError = (error: unknown): { message: string } => {
@@ -106,6 +109,49 @@ export const fetchSingleProduct = async (productId: string) => {
     // };
 
 // ✅===> CreateProductAction Version-02 - Zod Validation.
+    // export const createProductAction = async (
+    //     prevState: unknown,
+    //     formData: FormData
+    // ): Promise<{ message: string }> => {
+    //     const user = await getAuthUser();
+
+    //     try {
+    //         // # Convert FormData to plain object.
+    //         const rawData = Object.fromEntries(formData);
+
+    //         // ### Validation first approach.
+    //             // # Validate safely: checks whether rawData matches Zod schema,
+    //             // const validatedFields = productSchema.safeParse(rawData);
+
+    //             // # Handle validation errors (message)
+    //             // if (!validatedFields.success) {
+    //             //     // combine all error messages into a single string
+    //             //     const errorMessage = validatedFields.error.issues
+    //             //     .map((issue) => issue.message)
+    //             //     .join(", ");
+
+    //             //     return { message: errorMessage };
+    //             // }
+
+    //         // ### Validation Clean Version
+    //         const validatedFields = validateWithZodSchema(productSchema, rawData);
+
+    //         // # Insert data into database
+    //         await db.product.create({
+    //             data: {
+    //                 ...validatedFields, // The ... spread operator copies all these fields into the data object.
+    //                 image: '/images/sofa.png',
+    //                 clerkId: user?.id,
+    //             },
+    //         });
+
+    //         return { message: 'Product created successfully' }
+    //     } catch (error) {
+    //         return renderError(error);
+    //     }
+    // };
+
+// ✅===> CreateProductAction Version-03 - Image Upload
 export const createProductAction = async (
     prevState: unknown,
     formData: FormData
@@ -113,37 +159,25 @@ export const createProductAction = async (
     const user = await getAuthUser();
 
     try {
-        // # Convert FormData to plain object.
         const rawData = Object.fromEntries(formData);
+        const file = formData.get('image') as File;
 
-        // ### Validation first approach.
-            // # Validate safely: checks whether rawData matches Zod schema,
-            // const validatedFields = productSchema.safeParse(rawData);
-
-            // # Handle validation errors (message)
-            // if (!validatedFields.success) {
-            //     // combine all error messages into a single string
-            //     const errorMessage = validatedFields.error.issues
-            //     .map((issue) => issue.message)
-            //     .join(", ");
-
-            //     return { message: errorMessage };
-            // }
-
-        // ### Validation Clean Version
         const validatedFields = validateWithZodSchema(productSchema, rawData);
+        const validatedFile = validateWithZodSchema(imageSchema, { image: file });
+        const fullPathImage = await uploadImage(validatedFile.image);
 
         // # Insert data into database
         await db.product.create({
             data: {
-                ...validatedFields, // The ... spread operator copies all these fields into the data object.
-                image: '/images/sofa.png',
+                ...validatedFields,
+                image: fullPathImage,
                 clerkId: user?.id,
             },
         });
 
-        return { message: 'Product created successfully' }
     } catch (error) {
         return renderError(error);
     }
+
+    redirect('/admin/products');
 };

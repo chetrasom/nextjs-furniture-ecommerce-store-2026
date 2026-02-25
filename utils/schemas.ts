@@ -1,5 +1,6 @@
 import { z, ZodSchema } from "zod";
 
+// # Form Data Validation
 export const productSchema = z.object({
     // # Basic: not user friendly
     // name: z.string().min(4),
@@ -48,3 +49,24 @@ export function validateWithZodSchema<T>(
 
   return result.data;
 }
+
+// # Image Upload Validation
+export const imageSchema = z.object({
+    image: validateImageFile(),
+});
+
+function validateImageFile() {
+    const maxUploadSize = 1024 * 1024;
+    const acceptedFileTypes = ['image/'];
+
+    return z
+        .instanceof(File)
+        .refine((file) => {
+            return !file || file.size <= maxUploadSize;
+        }, `File size must be less than 1 MB`)
+        .refine((file) => {
+            return (
+                !file || acceptedFileTypes.some((type) => file.type.startsWith(type))
+            );
+        }, 'File must be an image');
+};
