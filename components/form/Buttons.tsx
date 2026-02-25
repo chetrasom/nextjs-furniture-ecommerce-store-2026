@@ -1,0 +1,55 @@
+"use client";
+
+// Node modules
+import { useFormStatus } from 'react-dom';
+
+// Custom modules
+import { cn } from '@/lib/utils';
+
+// Clerk
+import { SignInButton } from '@clerk/nextjs';
+
+// Components
+import { Button } from '../ui/button';
+
+// Assets
+import { Loader2 } from 'lucide-react';
+import { FaRegHeart, FaHeart } from 'react-icons/fa';
+import { LuTrash2, LuSquarePen } from 'react-icons/lu';
+
+// Types
+type btnSize = 'default' | 'lg' | 'sm';
+
+type SubmitButtonProps = {
+    className?: string;
+    text?: string;
+    size?: btnSize;
+};
+
+const SubmitButton = ({
+    className = '',
+    text = 'submit',
+    size = 'lg',
+}: SubmitButtonProps) => {
+    const { pending } = useFormStatus();
+
+    return (
+        <Button
+            type='submit'
+            disabled={pending}
+            className={cn('capitalize', className)}
+            size={size}
+        >
+            {pending ? (
+                <>
+                    <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                    Please wait...
+                </>
+            ) : (
+                text
+            )}
+        </Button>
+    )
+}
+
+export default SubmitButton
