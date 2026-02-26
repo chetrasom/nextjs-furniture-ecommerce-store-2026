@@ -12,13 +12,12 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { useId } from 'react'
+import { Button } from '@/components/ui/button';
+
+import DeleteProduct from "@/components/admin/DeleteProduct";
+import { IconButton } from "@/components/form/Buttons";
 
 import { ArchiveIcon, PencilIcon, Trash2Icon } from 'lucide-react'
-
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
 
 const AdminProductsPage = async () => {
     const items = await fetchAdminProducts();
@@ -60,20 +59,12 @@ const AdminProductsPage = async () => {
                                     <TableCell>{formatCurrency(price)}</TableCell>
 
                                     <TableCell className='flex items-center gap-1'>
-                                        <Button variant='ghost' size='icon' className='rounded-full' aria-label={`product-${item.id}-edit`}>
-                                            <PencilIcon />
-                                        </Button>
-                                        <Button variant='ghost' size='icon' className='rounded-full' aria-label={`product-${item.id}-remove`}>
-                                            <Trash2Icon />
-                                        </Button>
-                                        <Button
-                                            variant='ghost'
-                                            size='icon'
-                                            className='rounded-full'
-                                            aria-label={`product-${item.id}-archive`}
-                                        >
-                                            <ArchiveIcon />
-                                        </Button>
+                                        <Link href={`/admin/products/${productId}/edit`}>
+                                            <IconButton actionType='edit'></IconButton>
+                                        </Link>
+
+                                        <DeleteProduct productId={productId} />
+
                                     </TableCell>
                                 </TableRow>
                             )

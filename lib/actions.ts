@@ -3,13 +3,14 @@
 import db from "@/utils/db";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 // Schemas
 import { productSchema, imageSchema } from "@/utils/schemas";
 import { validateWithZodSchema } from "@/utils/schemas";
 
 // Supabase function
-import { uploadImage } from "@/utils/supabase";
+import { uploadImage, deleteImage } from "@/utils/supabase";
 
 // ⭐⭐⭐ # Helper Functions
 const renderError = (error: unknown): { message: string } => {
@@ -203,4 +204,26 @@ export const fetchAdminProducts = async () => {
     });
 
     return products;
+};
+
+// ⭐ Delete Admin Products
+export const deleteProductAction = async (prevState: { productId: string }) => {
+    const { productId } = prevState;
+    await getAdminUser();
+
+    try {
+        const product = await db.product.delete({
+            where: {
+                id: productId,
+            },
+        });
+
+        await deleteImage(product.image)
+
+        revalidatePath('/admin/products');
+
+        return { message: 'Product Removed' };
+    } catch (error) {
+        return renderError(error);
+    }
 };
