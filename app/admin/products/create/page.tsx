@@ -1,10 +1,5 @@
 import { faker } from '@faker-js/faker';
 
-// Component
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
 // Form components
 import FormContainer from '@/components/form/FormContainer';
 import SubmitButton from '@/components/form/Buttons';

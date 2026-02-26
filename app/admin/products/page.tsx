@@ -12,12 +12,9 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
 
 import DeleteProduct from "@/components/admin/DeleteProduct";
 import { IconButton } from "@/components/form/Buttons";
-
-import { ArchiveIcon, PencilIcon, Trash2Icon } from 'lucide-react'
 
 const AdminProductsPage = async () => {
     const items = await fetchAdminProducts();
@@ -72,7 +69,6 @@ const AdminProductsPage = async () => {
                     </TableBody>
                 </Table>
             </div>
-            {/* <p className='text-muted-foreground mt-4 text-center text-sm'>Product Table</p> */}
         </div>
     )
 }

@@ -85,7 +85,7 @@ export const fetchSingleProduct = async (productId: string) => {
 
 // # ⭐⭐⭐ Admin
 
-// ⚠️ ===> CreateProductAction Version-01 - First Approach
+// ⚠️ CreateProductAction Version-01 - First Approach
     // export const createProductAction = async (
     //     prevState: unknown,
     //     formData: FormData
@@ -119,7 +119,7 @@ export const fetchSingleProduct = async (productId: string) => {
     //     }
     // };
 
-// ⚠️===> CreateProductAction Version-02 - Zod Validation.
+// ⚠️  CreateProductAction Version-02 - Zod Validation.
     // export const createProductAction = async (
     //     prevState: unknown,
     //     formData: FormData
@@ -162,7 +162,7 @@ export const fetchSingleProduct = async (productId: string) => {
     //     }
     // };
 
-// ✅===> CreateProductAction Version-03 - Image Upload
+// ✅ CreateProductAction Version-03 - Image Upload
 export const createProductAction = async (
     prevState: unknown,
     formData: FormData
@@ -226,4 +226,28 @@ export const deleteProductAction = async (prevState: { productId: string }) => {
     } catch (error) {
         return renderError(error);
     }
+};
+
+// ⭐ Update Admin Products - #FetchAdminProductDetails, #UpdateProductAction and #updateProductImageAction
+
+export const FetchAdminProductDetails = async (productId: string) => {
+    await getAdminUser();
+
+    const product = await db.product.findUnique({
+        where: {
+            id: productId,
+        },
+    });
+
+    if (!product) redirect("/admin/products");
+
+    return product;
+};
+
+export const UpdateProductAction = async (prevState: unknown, formData: FormData) => {
+    return { message: 'Product updated successfully' };
+};
+
+export const updateProductImageAction = async (prevState: unknown, formData: FormData) => {
+    return { message: 'Product Image updated successfully' };
 };
