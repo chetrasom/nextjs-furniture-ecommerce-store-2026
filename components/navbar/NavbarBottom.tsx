@@ -21,15 +21,17 @@ import { BookmarkIcon, TagIcon } from "lucide-react";
 
 const NavbarBottom = () => {
     const pathname = usePathname();
-    const { userId, isLoaded } = useAuth();
+    const { 
+        userId, 
+        isLoaded 
+    } = useAuth();
 
     // Prevent hydration mismatch
-    // if (!isLoaded) return null;
+    if (!isLoaded) return null;
 
     // UI-only admin check (matches your server logic)
     // const isAdmin = userId === process.env.ADMIN_USER_ID;
     const isAdmin = userId === process.env.NEXT_PUBLIC_ADMIN_USER_ID;
-    console.log(userId);
 
     return (
         <div className="bg-secondary rounded-md flex items-center justify-between px-4 h-16">

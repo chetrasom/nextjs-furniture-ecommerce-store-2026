@@ -3,7 +3,7 @@ import FormContainer from '@/components/form/FormContainer';
 import SubmitButton from '@/components/form/Buttons';
 import FormInput from '@/components/form/FormInput';
 import PriceInput from '@/components/form/PriceInput';
-import ImageInput from '@/components/form/ImageInput';
+import ImageInputContainer from '@/components/form/ImageInputContainer';
 import TextAreaInput from '@/components/form/TextAreaInput';
 import CheckBoxInput from '@/components/form/CheckBoxInput';
 
@@ -12,8 +12,9 @@ import { PenSquare } from "lucide-react";
 
 // Actions
 import { 
-    FetchAdminProductDetails,
-    UpdateProductAction
+    fetchAdminProductDetails,
+    updateProductAction,
+    updateProductImageAction
 } from '@/lib/actions';
 
 // Types
@@ -23,7 +24,7 @@ type EditProductPageProps = {
 
 const EditProductPage = async ({ params }: EditProductPageProps) => {
     const { id } = await params;
-    const product = await FetchAdminProductDetails(id);
+    const product = await fetchAdminProductDetails(id);
     const { name, company, description, featured, price } = product;
 
     return (
@@ -35,9 +36,23 @@ const EditProductPage = async ({ params }: EditProductPageProps) => {
                 </h1>
             </div>
 
-            <FormContainer action={UpdateProductAction}>
+            <ImageInputContainer
+                action={updateProductImageAction}
+                name={name}
+                image={product.image}
+                // text='update image'
+                text='ផ្លាស់ប្តូររូបភាពថ្មី'
+            >
+                <input type='hidden' name='id' value={id} />
+                <input type='hidden' name='url' value={product.image} />
+            </ImageInputContainer>
+
+            <FormContainer action={updateProductAction}>
                 <div className='space-y-2 lg:space-y-4'>
                     <div className='grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-4'>
+                        {/* send the product ID along with the form submission */}
+                        <input type='hidden' name='id' value={id} />
+
                         <FormInput 
                             type='text'
                             name='name'
@@ -53,8 +68,6 @@ const EditProductPage = async ({ params }: EditProductPageProps) => {
                         />
 
                         <PriceInput defaultValue={price} />
-
-                        <ImageInput />
                     </div>
 
                     <TextAreaInput
