@@ -116,7 +116,6 @@ const SingleProductPage = async ({ params }: SingleProductPageProps) => {
 
                         <div className="flex gap-x-4">
                             <FavoriteToggleButton productId={product.id} />
-                            <FavoriteToggleButton productId={product.id} />
                             {/* <ShareButton name={product.name} productId={product.id} /> */}
                         </div>
                     </div>
