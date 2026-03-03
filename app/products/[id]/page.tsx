@@ -1,7 +1,7 @@
 // Node modules
 import Image from "next/image";
 import prisma from "@/utils/db";
-import { notFound } from "next/navigation"
+import { notFound } from "next/navigation";
 
 // Actions
 import { fetchSingleProduct } from "@/lib/actions";
@@ -14,6 +14,7 @@ import BreadCrumb from "@/components/global/BreadCrumb";
 import FavoriteToggleButton from "@/components/products/FavoriteToggleButton";
 import AddToCart from "@/components/single-products/AddToCart";
 import ProductRating from "@/components/single-products/ProductRating";
+import SocialShareButton from "@/components/single-products/SocialShareButton";
 
 // Type
 interface SingleProductPageProps {
@@ -116,7 +117,10 @@ const SingleProductPage = async ({ params }: SingleProductPageProps) => {
 
                         <div className="flex gap-x-4">
                             <FavoriteToggleButton productId={product.id} />
-                            {/* <ShareButton name={product.name} productId={product.id} /> */}
+                            <SocialShareButton 
+                                productId={product.id}
+                                name={product.name}
+                            />
                         </div>
                     </div>
 
