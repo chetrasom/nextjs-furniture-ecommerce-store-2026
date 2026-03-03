@@ -14,7 +14,7 @@ const Homepage = () => {
         <>
             <Hero />
 
-            <section className="py-14">
+            <section className="pt-8 pb-14">
                 <SectionTitle 
                     text="ផលិតផលពេញនិយម"
                     subtitle="បង្ហាញផលិតផលដែលពេញនិយម និងមានគុណភាពខ្ពស់ក្នុងពេលបច្ចុប្បន្ន"

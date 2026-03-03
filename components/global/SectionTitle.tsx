@@ -7,7 +7,7 @@ interface SectionTitleProps {
 
 const SectionTitle = ({ text, subtitle }: SectionTitleProps) => {
     return (
-        <div className="mb-8 space-y-2 font-kh-kantumruy">
+        <div className="my-8 space-y-2 font-kh-kantumruy">
             <div>
                 <h2 className="text-2xl font-semibold tracking-tight capitalize md:text-2xl lg:text-[28px]">
                     {text}
