@@ -10,7 +10,7 @@ type TextAreaInputProps = {
 const TextAreaInput = ({ name, labelText, defaultValue }: TextAreaInputProps) => {
     return (
         <div className="mb-2 space-y-3">
-            <Label htmlFor={name} className='capitalize'>
+            <Label htmlFor={name} className='capitalize text-base'>
                 {labelText || name}
             </Label>
             
@@ -18,7 +18,7 @@ const TextAreaInput = ({ name, labelText, defaultValue }: TextAreaInputProps) =>
                 id={name}
                 name={name}
                 defaultValue={defaultValue}
-                rows={5}
+                rows={20}
                 required
                 className='leading-loose'
             />

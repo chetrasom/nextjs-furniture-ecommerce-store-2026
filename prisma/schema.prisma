@@ -22,6 +22,10 @@ model Product {
   // # Relation: one Product -> many Favorites
   // # One product can be favorited by many users
   favorites Favorite[]
+
+  // # One-to-Many
+  // # one product can have many reviews (one-to-many relationship)
+  reviews Review []
 }
 
 /*====================================================================*/
@@ -44,4 +48,25 @@ model Favorite {
 
   // one user can favorite one product only once
   @@unique([clerkId, productId])
+}
+
+/*====================================================================*/
+// # Review Model
+model Review {
+  id String @id @default(uuid()) // review record ID
+  clerkId  String // ID of the user who wrote the review
+  productId String // ID of the related product
+
+  rating Int // rating score (1-5)
+  comment String // the review text / comment
+  authorName String // name of the reviewer
+  authorImageUrl String? // optional image of reviewer
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // relation to Product table
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId]) // index for faster lookup by product
 }

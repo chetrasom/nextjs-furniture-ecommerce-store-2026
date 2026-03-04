@@ -16,6 +16,9 @@ import AddToCart from "@/components/single-products/AddToCart";
 import ProductRating from "@/components/single-products/ProductRating";
 import SocialShareButton from "@/components/single-products/SocialShareButton";
 
+import SectionTitle from "@/components/global/SectionTitle";
+import SubmitReview from "@/components/reviews/SubmitReview";
+
 // Type
 interface SingleProductPageProps {
     params: Promise<{ id: string }>
@@ -135,6 +138,14 @@ const SingleProductPage = async ({ params }: SingleProductPageProps) => {
                     <AddToCart productId={product.id} />
                 </div>
             </div>
+
+            {/* Form Submit Review */}
+            <div className="mt-10">
+                <SectionTitle text="ការវាយតម្លៃផលិតផល" />
+                
+                <SubmitReview productId={productId} />
+            </div>
+
         </section>
     )
 }

@@ -8,6 +8,7 @@ import { revalidatePath } from "next/cache";
 // Schemas
 import { productSchema, imageSchema } from "@/utils/schemas";
 import { validateWithZodSchema } from "@/utils/schemas";
+import { reviewSchema } from "@/utils/schemas";
 
 // Supabase function
 import { uploadImage, deleteImage } from "@/utils/supabase";
@@ -299,7 +300,7 @@ export const updateProductImageAction = async (prevState: unknown, formData: For
     }
 };
 
-// # ⭐⭐⭐ RELATIONS
+// # ⭐⭐⭐ FAVORITES
 
 // ⭐ Favorite
 export const fetchFavoriteId = async ({ productId }: { productId: string }) => {
@@ -365,3 +366,42 @@ export const fetchUserFavorites = async () => {
 
     return favorites;
 };
+
+// # ⭐⭐⭐ REVIEWS
+export const createReviewAction = async (
+    prevState: unknown,
+    formData: FormData
+) => {
+    const user = await getAuthUser();
+
+    try {
+        const rawData = Object.fromEntries(formData);
+
+        const validatedFields = validateWithZodSchema(reviewSchema, rawData);
+        console.log(validatedFields)
+
+        await db.review.create({
+            data: {
+                ...validatedFields,
+                clerkId: user.id,
+            },
+        });
+        
+        // single detail path
+        revalidatePath(`/products/${validatedFields.productId}`);
+
+        return { message: 'Review submitted successfully' };
+    } catch (error) {
+        return renderError(error);
+    }
+};
+
+export const fetchProductReviews = async () => {};
+
+export const fetchProductReviewsByUser = async () => {};
+
+export const deleteReviewAction = async () => {};
+
+export const findExistingReview = async () => {};
+
+export const fetchProductRating = async () => {};
