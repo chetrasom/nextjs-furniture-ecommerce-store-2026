@@ -412,6 +412,28 @@ export const fetchProductReviews = async (productId: string) => {
     return reviews;
 };
 
+// TODO: implement fetchProductRating to calculate average rating for a product
+export const fetchProductRating = async (productId: string) => {
+    const result = await db.review.groupBy({
+        by: ['productId'],
+        _avg: {
+            rating: true,
+        },
+        _count: {
+            rating: true,
+        },
+        where: {
+            productId,
+        },
+    });
+
+    // empty array if no reviews
+    return {
+        rating: Number(result[0]?._avg.rating?.toFixed(1)) ?? 0,
+        count: result[0]?._count.rating ?? 0,
+    };
+};
+
 // TODO: implement fetchProductReviewsByUser to get reviews by the logged-in user
 export const fetchProductReviewsByUser = async () => {};
 
@@ -420,6 +442,3 @@ export const deleteReviewAction = async () => {};
 
 // TODO: implement findExistingReview to check if the user already reviewed a product
 export const findExistingReview = async () => {};
-
-// TODO: implement fetchProductRating to calculate average rating for a product
-export const fetchProductRating = async () => {};
