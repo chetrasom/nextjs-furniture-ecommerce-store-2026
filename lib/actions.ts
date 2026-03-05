@@ -434,7 +434,7 @@ export const fetchProductRating = async (productId: string) => {
     };
 };
 
-// TODO: implement fetchProductReviewsByUser to get reviews by the logged-in user
+// ✅ implement fetchProductReviewsByUser to get reviews by the logged-in user
 export const fetchProductReviewsByUser = async () => {
     const user = await getAuthUser();
     
@@ -458,7 +458,7 @@ export const fetchProductReviewsByUser = async () => {
     return reviews;
 };
 
-// TODO: implement deleteReviewAction to allow users to delete their review
+// ✅ implement deleteReviewAction to allow users to delete their review
 export const deleteReviewAction = async (prevState: { reviewId: string }) => {
     const { reviewId } = prevState;
     const user = await getAuthUser();
@@ -479,5 +479,12 @@ export const deleteReviewAction = async (prevState: { reviewId: string }) => {
     }
 };
 
-// TODO: implement findExistingReview to check if the user already reviewed a product
-export const findExistingReview = async () => {};
+// ✅ implement findExistingReview to check if the user already reviewed a product
+export const findExistingReview = async (userId: string, productId: string) => {
+    return db.review.findFirst({
+        where: {
+            clerkId: userId,
+            productId
+        },
+    });
+};

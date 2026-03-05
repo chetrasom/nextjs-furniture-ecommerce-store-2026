@@ -4,7 +4,10 @@ import prisma from "@/utils/db";
 import { notFound } from "next/navigation";
 
 // Actions
-import { fetchSingleProduct } from "@/lib/actions";
+import { fetchSingleProduct, findExistingReview } from "@/lib/actions";
+
+// Clerk
+import { auth } from '@clerk/nextjs/server';
 
 // Format
 import { formatCurrency } from "@/utils/format";
@@ -81,6 +84,10 @@ const SingleProductPage = async ({ params }: SingleProductPageProps) => {
     const { name, image, description, price } = product;
     const dollarsAmount = formatCurrency(price);
 
+    const { userId } = await auth();
+    // Mean = Is the user logged in AND has the user NOT reviewed this product yet?
+    const reviewDoesNotExist = userId && !(await findExistingReview(userId, product.id));
+
     if (!product) {
         notFound(); // Show the 404 page if product is not found
     }
@@ -146,7 +153,7 @@ const SingleProductPage = async ({ params }: SingleProductPageProps) => {
 
                 <ProductReviews productId={productId} />
 
-                <SubmitReview productId={productId} />
+                {reviewDoesNotExist && <SubmitReview productId={productId} />}
             </div>
 
         </section>
