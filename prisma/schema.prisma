@@ -26,6 +26,8 @@ model Product {
   // # One-to-Many
   // # one product can have many reviews (one-to-many relationship)
   reviews Review []
+
+  cartItems CartItem[]
 }
 
 /*====================================================================*/
@@ -69,4 +71,31 @@ model Review {
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@index([productId]) // index for faster lookup by product
+}
+
+/*====================================================================*/
+// # Cart and CartItem Model
+model Cart {
+  id        String   @id @default(uuid())
+  clerkId  String
+  cartItems CartItem[]
+  numItemsInCart Int @default(0)
+  cartTotal Int @default(0)
+  shipping Int @default(5)
+  tax Int @default(0)
+  taxRate Float @default(0.1)
+  orderTotal Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+  id        String   @id @default(uuid())
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String
+  cart     Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId   String
+  amount  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

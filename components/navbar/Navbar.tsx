@@ -9,7 +9,7 @@ import Logo from "./Logo";
 import NavSearch from "./NavSearch";
 import LinksDropdown from "./LinksDropdown";
 import NavSearchDialog from "./NavSearchDialog";
-// import CartButton from "./CartButton";
+import CartButton from "./CartButton";
 import DarkMode from "./DarkMode";
 import UserMenu from "./UserMenu";
 import ClientOnly from "../global/ClientOnlyHydration";
@@ -27,7 +27,7 @@ const Navbar = () => {
                     <div className="h-full w-full border-b flex items-center justify-between lg:hidden">
                         <Logo />
 
-                        <div className="flex items-center gap-x-2">
+                        <div className="flex items-center gap-x-2.5">
                             <Suspense>
                                 <NavSearchDialog />
                             </Suspense>
@@ -36,6 +36,8 @@ const Navbar = () => {
                             <ClientOnly>
                                 <DarkMode />
                             </ClientOnly>
+
+                            <CartButton />
 
                             <LinksDropdown />
                         </div>
@@ -48,12 +50,15 @@ const Navbar = () => {
                             <Suspense>
                                 <NavSearch />
                             </Suspense>
-                            <div className="flex items-center gap-x-2">
+                            <div className="flex items-center gap-x-2.5">
                                 <UserMenu />
+                                
                                 {/* Fix Hydration error */}
                                 <ClientOnly>
                                     <DarkMode />
                                 </ClientOnly>
+
+                                <CartButton />
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 'use server';
 
 import db from "@/utils/db";
-import { currentUser } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
@@ -488,3 +488,71 @@ export const findExistingReview = async (userId: string, productId: string) => {
         },
     });
 };
+
+// # ⭐⭐⭐ ADD TO CART
+
+// Get total number of items in the current user's cart
+// Used for displaying cart badge count in navbar
+// Returns 0 if user is not logged in or cart does not exist
+export const fetchCartItemCount = async () => {
+    const { userId } = await auth();
+
+    if (!userId) return 0;
+
+    const cart = await db.cart.findFirst({
+        where: {
+            clerkId: userId ?? '',
+        },
+        select: {
+            numItemsInCart: true,
+        },
+    });
+
+    return cart?.numItemsInCart || 0;
+};
+
+
+// Fetch a single product by id
+// Used when adding item to cart to get price and validate product existence
+const fetchProduct = async () => {};
+
+
+// Find existing cart for logged-in user
+// If no cart exists, create a new one
+// Always returns a valid cart
+export const fetchOrCreateCart = async () => {};
+
+
+// If product already exists in cart → increase quantity
+// If not → create new CartItem
+// Does NOT update cart totals (handled separately)
+const updateOrCreateCartItem = async () => {};
+
+
+// Recalculate and update cart summary fields:
+// - numItemsInCart
+// - cartTotal
+// - tax
+// - orderTotal
+// Should be called after any cart change
+export const updateCart = async () => {};
+
+
+// Main action to add product to cart
+// Flow:
+// 1. Validate user
+// 2. Fetch product
+// 3. Fetch or create cart
+// 4. Update or create cart item
+// 5. Recalculate cart totals
+export const addToCartAction = async () => {};
+
+
+// Remove a specific cart item from cart
+// After removal → update cart totals
+export const removeCartItemAction = async () => {};
+
+
+// Update quantity of a cart item
+// After updating → recalculate cart totals
+export const updateCartItemAction = async () => {};
