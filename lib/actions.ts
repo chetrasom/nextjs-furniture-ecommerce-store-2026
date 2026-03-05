@@ -368,6 +368,8 @@ export const fetchUserFavorites = async () => {
 };
 
 // # ⭐⭐⭐ REVIEWS
+
+// ✅Implement createReviewAction to create a new review in the database
 export const createReviewAction = async (
     prevState: unknown,
     formData: FormData
@@ -396,12 +398,28 @@ export const createReviewAction = async (
     }
 };
 
-export const fetchProductReviews = async () => {};
+// ✅ implement fetchProductReviews to get all reviews for a product
+export const fetchProductReviews = async (productId: string) => {
+    const reviews = await db.review.findMany({
+        where: {
+            productId
+        },
+        orderBy: {
+            createdAt: 'desc'
+        },
+    });
 
+    return reviews;
+};
+
+// TODO: implement fetchProductReviewsByUser to get reviews by the logged-in user
 export const fetchProductReviewsByUser = async () => {};
 
+// TODO: implement deleteReviewAction to allow users to delete their review
 export const deleteReviewAction = async () => {};
 
+// TODO: implement findExistingReview to check if the user already reviewed a product
 export const findExistingReview = async () => {};
 
+// TODO: implement fetchProductRating to calculate average rating for a product
 export const fetchProductRating = async () => {};

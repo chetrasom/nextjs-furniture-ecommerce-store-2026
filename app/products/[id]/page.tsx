@@ -17,6 +17,7 @@ import ProductRating from "@/components/single-products/ProductRating";
 import SocialShareButton from "@/components/single-products/SocialShareButton";
 
 import SectionTitle from "@/components/global/SectionTitle";
+import ProductReviews from "@/components/reviews/ProductReviews";
 import SubmitReview from "@/components/reviews/SubmitReview";
 
 // Type
@@ -142,7 +143,9 @@ const SingleProductPage = async ({ params }: SingleProductPageProps) => {
             {/* Form Submit Review */}
             <div className="mt-10">
                 <SectionTitle text="ការវាយតម្លៃផលិតផល" />
-                
+
+                <ProductReviews productId={productId} />
+
                 <SubmitReview productId={productId} />
             </div>
 
