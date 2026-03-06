@@ -693,6 +693,8 @@ export const addToCartAction = async (prevState: unknown, formData: FormData) =>
         // 6️⃣ Update the cart totals (numItemsInCart, cartTotal, tax, orderTotal)
         await updateCart(cart);
 
+        // Revalidate layout to update navbar cart count after adding item
+        revalidatePath('/', 'layout');
     } catch (error) {
         // 7️⃣ Handle any errors (invalid product, DB issues, etc.)
         return renderError(error);
