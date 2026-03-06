@@ -4,6 +4,7 @@ import db from "@/utils/db";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { Cart } from "@/app/generated/prisma/client";
 
 // Schemas
 import { productSchema, imageSchema } from "@/utils/schemas";
@@ -491,6 +492,7 @@ export const findExistingReview = async (userId: string, productId: string) => {
 
 // # ⭐⭐⭐ ADD TO CART
 
+// ✅ Done
 // Get total number of items in the current user's cart
 // Used for displaying cart badge count in navbar
 // Returns 0 if user is not logged in or cart does not exist
@@ -511,48 +513,195 @@ export const fetchCartItemCount = async () => {
     return cart?.numItemsInCart || 0;
 };
 
-
+// ✅ Done Step-1 AddToCart
 // Fetch a single product by id
 // Used when adding item to cart to get price and validate product existence
-const fetchProduct = async () => {};
+const fetchProduct = async (productId: string) => {
+    const product = await db.product.findUnique({
+        where: {
+            id: productId,
+        },
+    });
+
+    // If no product is found, stop the action
+    if (!product) {
+        throw new Error('Product not found');
+    }
+
+    // Return the valid product
+    return product;
+};
 
 
-// Find existing cart for logged-in user
-// If no cart exists, create a new one
-// Always returns a valid cart
-export const fetchOrCreateCart = async () => {};
+// ✅ Done Step-2 AddToCart
+// Fetch the user's cart if it exists, otherwise create a new one
+// Used in cart actions to ensure a user always has a cart
+
+const includeProductClause = {
+    cartItems: {
+        include: {
+            product: true,
+        },
+    },
+};
+
+export const fetchOrCreateCart = async ({
+    userId,
+    errorOnFailure = false,
+}: {
+    userId: string; // ID of the logged-in user
+    errorOnFailure?: boolean; // Whether to throw an error if cart not found
+}) => {
+    // Try to find an existing cart for the user
+    let cart = await db.cart.findFirst({
+        where: {
+            clerkId: userId,
+        },
+        include: includeProductClause, // fetch cart items and products
+    });
+
+    // If cart not found and errorOnFailure is true, throw error
+    if (!cart && errorOnFailure) {
+        throw new Error('Cart not found');
+    }
+
+    // If cart does not exist, create a new one
+    if (!cart) {
+        cart = await db.cart.create({
+            data: {
+                clerkId: userId,
+            },
+            include: includeProductClause, // return cart with items (empty at first)
+        });
+    }
+
+    // Return the existing or newly created cart
+    return cart;
+};
+
+// ✅ Done Step-3 AddToCart
+// Update an existing cart item or create a new one if it doesn't exist
+// This ensures the cart has one item per product and updates quantity correctly
+const updateOrCreateCartItem = async ({
+    productId,
+    cartId,
+    amount,
+}: {
+    productId: string;  // The product to add/update
+    cartId: string;     // The cart where the product belongs
+    amount: number;     // Quantity to add
+}) => {
+    // Check if this product already exists in the cart
+    let cartItem = await db.cartItem.findFirst({
+        where: {
+            productId,
+            cartId,
+        },
+    });
+
+    if (cartItem) {
+        // Product exists → update the quantity
+        cartItem = await db.cartItem.update({
+            where: {
+                id: cartItem.id,
+            },
+            data: {
+                amount: cartItem.amount + amount,
+            },
+        });
+    } else {
+        // Product does not exist → create a new cart item
+        cartItem = await db.cartItem.create({
+            data: { amount, productId, cartId },
+        });
+    }
+
+    // Return the updated or newly created cart item
+    return cartItem;
+};
 
 
-// If product already exists in cart → increase quantity
-// If not → create new CartItem
-// Does NOT update cart totals (handled separately)
-const updateOrCreateCartItem = async () => {};
+// ✅ Done Step-4 AddToCart
+// Updates the cart summary: total items, subtotal, tax, shipping, and order total
+// Used whenever cart items are added, updated, or removed
+export const updateCart = async (cart: Cart) => {
+    // 1️⃣ Fetch all items in the cart along with their product info
+    const cartItems = await db.cartItem.findMany({
+        where: {
+            cartId: cart.id,
+        },
+            include: {
+            product: true, // Include product info to calculate price
+        },
+    });
 
+    // 2️⃣ Initialize counters
+    let numItemsInCart = 0; // total quantity of all items
+    let cartTotal = 0;      // subtotal (sum of product price * quantity)
 
-// Recalculate and update cart summary fields:
-// - numItemsInCart
-// - cartTotal
-// - tax
-// - orderTotal
-// Should be called after any cart change
-export const updateCart = async () => {};
+    // 3️⃣ Loop through items to calculate subtotal and total quantity
+    for (const item of cartItems) {
+        numItemsInCart += item.amount;                  // sum of quantities
+        cartTotal += item.amount * item.product.price;  // sum of product prices
+    }
 
+    // 4️⃣ Calculate tax based on cart tax rate
+    const tax = cart.taxRate * cartTotal;
 
-// Main action to add product to cart
-// Flow:
-// 1. Validate user
-// 2. Fetch product
-// 3. Fetch or create cart
-// 4. Update or create cart item
-// 5. Recalculate cart totals
-export const addToCartAction = async () => {};
+    // 5️⃣ Calculate shipping if cart has items
+    const shipping = cartTotal ? cart.shipping : 0;
 
+    // 6️⃣ Calculate the final order total
+    const orderTotal = cartTotal + tax + shipping;
 
-// Remove a specific cart item from cart
-// After removal → update cart totals
+    // 7️⃣ Update the cart in the database with the new summary
+    await db.cart.update({
+        where: {
+            id: cart.id,
+        },
+        data: {
+            numItemsInCart,
+            cartTotal,
+            tax,
+            orderTotal,
+        },
+    });
+};
+
+// ✅ ⭐ Completed AddToCart ⭐
+// Action to add a product to the user's cart
+// This handles validation, cart creation, updating quantities, and recalculating totals
+export const addToCartAction = async (prevState: unknown, formData: FormData) => {
+    // 1️⃣ Get the logged-in user
+    const user = await getAuthUser();
+
+    try {
+        // 2️⃣ Extract productId and amount from the submitted form
+        const productId = formData.get('productId') as string;
+        const amount = Number(formData.get('amount'));
+
+        // 3️⃣ Validate that the product exists
+        // Throws an error if productId is invalid
+        await fetchProduct(productId);
+
+        // 4️⃣ Fetch the user's cart or create one if it doesn't exist
+        const cart = await fetchOrCreateCart({ userId: user.id });
+
+        // 5️⃣ Add the product to the cart or update quantity if it already exists
+        await updateOrCreateCartItem({ productId, cartId: cart.id, amount });
+
+        // 6️⃣ Update the cart totals (numItemsInCart, cartTotal, tax, orderTotal)
+        await updateCart(cart);
+
+    } catch (error) {
+        // 7️⃣ Handle any errors (invalid product, DB issues, etc.)
+        return renderError(error);
+    }
+
+    // 8️⃣ Redirect the user to the cart page after successfully adding
+    redirect('/cart');
+};
+
 export const removeCartItemAction = async () => {};
 
-
-// Update quantity of a cart item
-// After updating → recalculate cart totals
 export const updateCartItemAction = async () => {};
