@@ -1,3 +1,4 @@
+import { Prisma } from "@/app/generated/prisma/client";
 
 export type NavLink = {
     href: string;
@@ -17,10 +18,12 @@ export type Hero = {
 // };
 
 export type actionFunction = (
-    prevState: any,
+    prevState: unknown,
     formData: FormData
 ) => Promise<{ message: string }>;
 
+
+// # ============= Cart Type ============= #
 export type CartItem = {
     productId: string;
     image: string;
@@ -38,3 +41,7 @@ export type CartState = {
     tax: number;
     orderTotal: number;
 };
+
+export type CartItemWithProduct = Prisma.CartItemGetPayload<{
+    include: { product: true };
+}>;

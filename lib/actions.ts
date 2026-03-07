@@ -429,9 +429,15 @@ export const fetchProductRating = async (productId: string) => {
     });
 
     // empty array if no reviews
+
+    const avgRating = result[0]?._avg.rating ?? 0;
+    const count = result[0]?._count.rating ?? 0;
+
     return {
-        rating: Number(result[0]?._avg.rating?.toFixed(1)) ?? 0,
-        count: result[0]?._count.rating ?? 0,
+        rating: Number(avgRating.toFixed(1)),
+        count,
+        // rating: Number(result[0]?._avg.rating?.toFixed(1)) ?? 0,
+        // count: result[0]?._count.rating ?? 0,
     };
 };
 
@@ -707,3 +713,7 @@ export const addToCartAction = async (prevState: unknown, formData: FormData) =>
 export const removeCartItemAction = async () => {};
 
 export const updateCartItemAction = async () => {};
+
+export const createOrderAction = async (prevState: unknown, formData: FormData) => {
+    return { message: 'gg' }
+};
