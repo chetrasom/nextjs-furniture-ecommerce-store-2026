@@ -33,7 +33,10 @@ const CartItemsList = ({ cartItems }: CartItemsListProps) => {
                             productId={productId}
                         />
 
-                        <ThirdColumn />
+                        <ThirdColumn 
+                            id={id} 
+                            quantity={amount} 
+                        />
 
                         <FourthColumn price={price} />
                     </Card>

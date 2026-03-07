@@ -1,6 +1,12 @@
 import React from 'react'
 
-const ThirdColumn = () => {
+// Types
+type ThirdColumnProps = {
+    id: string
+    quantity: number;
+};
+
+const ThirdColumn = ({ id, quantity }: ThirdColumnProps) => {
     return (
         <div className='border'>ThirdColumn</div>
     )
