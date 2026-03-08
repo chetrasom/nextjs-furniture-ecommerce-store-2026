@@ -1,3 +1,5 @@
+"use client";
+
 // Components
 import { Card } from "../ui/card";
 import { FirstColumn, SecondColumn, FourthColumn } from "./CartItemColumns";

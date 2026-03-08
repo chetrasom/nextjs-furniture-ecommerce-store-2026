@@ -38,7 +38,7 @@ const SelectProductAmount = (props: SelectProductAmountProps | SelectCartItemAmo
                 onValueChange={(value) => setAmount(Number(value))}
                 disabled={cartItem ? props.isLoading : false}
             >
-                <SelectTrigger className={cartItem ? 'w-25' : 'w-37.5'}>
+                <SelectTrigger className={cartItem ? 'w-full sm:w-25' : 'w-full sm:w-37.5'}>
                     <SelectValue placeholder={amount} />
                 </SelectTrigger>
                 <SelectContent>

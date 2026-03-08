@@ -22,11 +22,11 @@ const CartPage = async () => {
 
     if (!userId) redirect("/");
 
-    const cart = await fetchOrCreateCart({ userId });
-    await updateCart(cart);
+    const previousCart = await fetchOrCreateCart({ userId });
+    const { cartItems, currentCart } = await updateCart(previousCart);
 
     // No Item in cart.
-    if (cart.numItemsInCart === 0) {
+    if (cartItems.length === 0) {
         return (
             <section className='lg:pt-20 2xl:pt-22'>
                 <BreadCrumb
@@ -72,10 +72,10 @@ const CartPage = async () => {
 
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
                 <div className="lg:col-span-8">
-                    <CartItemsList cartItems={cart.cartItems} />
+                    <CartItemsList cartItems={cartItems} />
                 </div>
                 <div className="lg:col-span-4">
-                    <CartTotals cart={cart} />
+                    <CartTotals cart={currentCart} />
                 </div>
             </div>
         </section>

@@ -639,6 +639,9 @@ export const updateCart = async (cart: Cart) => {
             include: {
             product: true, // Include product info to calculate price
         },
+        orderBy: {
+            createdAt: 'asc',
+        },
     });
 
     // 2️⃣ Initialize counters
@@ -661,7 +664,7 @@ export const updateCart = async (cart: Cart) => {
     const orderTotal = cartTotal + tax + shipping;
 
     // 7️⃣ Update the cart in the database with the new summary
-    await db.cart.update({
+    const currentCart = await db.cart.update({
         where: {
             id: cart.id,
         },
@@ -671,7 +674,10 @@ export const updateCart = async (cart: Cart) => {
             tax,
             orderTotal,
         },
+        include: includeProductClause,
     });
+
+    return { currentCart, cartItems };
 };
 
 // ✅ ⭐ Completed AddToCart ⭐
@@ -710,9 +716,71 @@ export const addToCartAction = async (prevState: unknown, formData: FormData) =>
     redirect('/cart');
 };
 
-export const removeCartItemAction = async () => {};
+export const removeCartItemAction = async (
+    prevState: unknown,
+    formData: FormData
+) => {
+    const user = await getAuthUser();
 
-export const updateCartItemAction = async () => {};
+    try {
+        const cartItemId = formData.get('id') as string;
+
+        const cart = await fetchOrCreateCart({
+            userId: user.id,
+            errorOnFailure: true,
+        });
+            
+        await db.cartItem.delete({
+            where: {
+                id: cartItemId,
+                cartId: cart.id,
+            },
+        });
+
+        await updateCart(cart);
+
+        revalidatePath('/cart');
+        
+        return { message: 'Item removed from cart' };
+    } catch (error) {
+        return renderError(error);
+    }
+};
+
+export const updateCartItemAction = async ({ 
+    amount,
+    cartItemId,
+}: {
+    amount: number;
+    cartItemId: string;
+}) => {
+    const user = await getAuthUser();
+
+    try {
+        const cart = await fetchOrCreateCart({
+            userId: user.id,
+            errorOnFailure: true,
+        });
+
+        await db.cartItem.update({
+            where: {
+                id: cartItemId,
+                cartId: cart.id,
+            },
+            data: {
+                amount,
+            },
+        });
+
+        await updateCart(cart);
+
+        revalidatePath('/cart');
+
+        return { message: 'cart updated' };
+    } catch (error) {
+        return renderError(error);
+    }
+};
 
 export const createOrderAction = async (prevState: unknown, formData: FormData) => {
     return { message: 'gg' }
