@@ -36,6 +36,8 @@ yarn-error.log*
 # notes
 # note.txt
 zDevelop.txt
+zNotePayment.txt
+zInterview.txt
 
 # vercel
 .vercel
