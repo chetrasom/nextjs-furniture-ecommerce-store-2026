@@ -102,17 +102,18 @@ const NavSearchDialog = () => {
                             variant="default" 
                             onClick={submitSearch}
                             disabled={loading}
-                            className="gap-x-2 items-center h-11"
+                            className="gap-x-2 items-center h-11 font-kh-kantumruy"
                         >
                             {loading ? (
                                 <>
                                     <RotateCwIcon className="h-5 w-5 animate-spin" />
                                     Searching...
+                                    កំពុងស្វែងរក...
                                 </>
                             ) : (
                                 <>
                                     <SearchIcon className="w-5 h-5" />
-                                    Search
+                                    បញ្ជូន
                                 </>
                             )}
                         </Button>

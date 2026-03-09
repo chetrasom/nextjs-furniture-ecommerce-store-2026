@@ -1,7 +1,7 @@
 "use client";
 
 // Node modules
-import { useClerk, useUser } from "@clerk/nextjs";
+import { useClerk, useUser, useAuth } from "@clerk/nextjs";
 
 import {
     DropdownMenu,
@@ -15,13 +15,18 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // Assets
-import { ChevronsUpDownIcon, LogOutIcon } from "lucide-react";
+import { ChevronsUpDownIcon, LayoutDashboardIcon, LogOutIcon } from "lucide-react";
+import Link from "next/link";
 
 const SidebarUserMenu = () => {
     const { user, isLoaded } = useUser();
     const { signOut } = useClerk();
 
+    const { userId } = useAuth();
+
     if (!isLoaded || !user) return null;
+
+    const isAdmin = userId === process.env.NEXT_PUBLIC_ADMIN_USER_ID;
 
     return (
         <DropdownMenu>
@@ -77,13 +82,22 @@ const SidebarUserMenu = () => {
 
                 <DropdownMenuSeparator />
 
+                {isAdmin && (
+                    <DropdownMenuItem asChild>
+                        <Link href='/admin/dashboard'>
+                            <LayoutDashboardIcon />
+                            ផ្ទាំងគ្រប់គ្រង
+                        </Link>
+                    </DropdownMenuItem>
+                )}
+
                 <DropdownMenuGroup>
                     <DropdownMenuItem
                         className="cursor-pointer"
                         onClick={() => signOut({ redirectUrl: "/" })}
                     >
                         <LogOutIcon className="mr-2 size-4" />
-                        Log out
+                        ចាកចេញ
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
             </DropdownMenuContent>

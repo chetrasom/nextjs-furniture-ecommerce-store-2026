@@ -37,13 +37,13 @@ const SubmitButton = ({
         <Button
             type='submit'
             disabled={pending}
-            className={cn('capitalize', className)}
+            className={cn('capitalize font-kh-kantumruy', className)}
             size={size}
         >
             {pending ? (
                 <>
                     <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                    Please wait...
+                    សូមរង់ចាំ...
                 </>
             ) : (
                 text
@@ -127,8 +127,8 @@ export const CardSubmitButton = ({ isFavorite }: { isFavorite: boolean }) => {
 export const ProductSignInButton = () => {
     return (
         <SignInButton mode='modal'>
-            <Button type='button' size='default' className='mt-8'>
-                Please Sign In
+            <Button type='button' size='default' className='mt-8 font-kh-kantumruy'>
+                សូមបញ្ចូលគណនី
             </Button>
         </SignInButton>
     );

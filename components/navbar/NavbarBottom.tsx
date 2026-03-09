@@ -37,7 +37,6 @@ const NavbarBottom = () => {
         <div className="bg-secondary rounded-md flex items-center justify-between px-4 h-16">
             <div className="flex items-center gap-x-6">
                 {links.map((item) => {
-                    // if (item.label === "dashboard" && !isAdmin) return null;
                     if (item.label === 'dashboard' && !isAdmin) return null;
 
                     return (
@@ -51,24 +50,24 @@ const NavbarBottom = () => {
                                     : pathname.startsWith(item.href) && "text-primary"
                             )}
                         >
-                            {item.label}
+                            {item.lang_kh}
                         </Link>
                     )
                 })}
             </div>
 
-            <div className="space-x-2">
+            <div className="space-x-2 font-kh-kantumruy">
                 <Button asChild>
-                    <Link href="/">
+                    <Link href="/products">
                         <BookmarkIcon className="w-5 h-5" />
-                        <span>Deals Today</span>
+                        <span>ប្រូម៉ូសិនថ្ងៃនេះ</span>
                     </Link>
                 </Button>
 
                 <Button variant={"outline"} asChild>
-                    <Link href="/">
+                    <Link href="/products">
                         <TagIcon className="w-5 h-5" />
-                        <span>Special price</span>
+                        <span>តម្លៃពិសេស</span>
                     </Link>
                 </Button>
             </div>

@@ -18,8 +18,8 @@ const FavoritesPage = async () => {
             <section className='lg:pt-20 2xl:pt-22'>
                 <BreadCrumb
                     items={[
-                        { label: "Home", href: "/" },
-                        { label: "Favorites", href: "/favorites" },
+                        { label: "ទំព័រដើម", href: "/" },
+                        { label: "ចំណូលចិត្ត", href: "/favorites" },
                     ]}
                 />
 
@@ -50,8 +50,8 @@ const FavoritesPage = async () => {
         <section className='lg:pt-20 2xl:pt-22'>
             <BreadCrumb
                 items={[
-                    { label: "Home", href: "/" },
-                    { label: "Favorites", href: "/favorites" },
+                    { label: "ទំព័រដើម", href: "/" },
+                    { label: "ចំណូលចិត្ត", href: "/favorites" },
                 ]}
             />
 

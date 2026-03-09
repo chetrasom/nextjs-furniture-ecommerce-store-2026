@@ -31,8 +31,8 @@ const CartPage = async () => {
             <section className='lg:pt-20 2xl:pt-22'>
                 <BreadCrumb
                     items={[
-                        { label: "Home", href: "/" },
-                        { label: "Shopping Cart", href: "/cart" },
+                        { label: "ទំព័រដើម", href: "/" },
+                        { label: "កន្ត្រកទំនិញ", href: "/cart" },
                     ]}
                 />
 
@@ -60,8 +60,8 @@ const CartPage = async () => {
         <section className='lg:pt-20 2xl:pt-22'>
             <BreadCrumb
                 items={[
-                    { label: "Home", href: "/" },
-                    { label: "Shopping Cart", href: "/cart" },
+                    { label: "ទំព័រដើម", href: "/" },
+                    { label: "កន្ត្រកទំនិញ", href: "/cart" },
                 ]}
             />
 

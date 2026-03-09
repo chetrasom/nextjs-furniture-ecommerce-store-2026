@@ -27,41 +27,37 @@ const Navbar = () => {
                     <div className="h-full w-full border-b flex items-center justify-between lg:hidden">
                         <Logo />
 
-                        <div className="flex items-center gap-x-2.5">
-                            <Suspense>
-                                <NavSearchDialog />
-                            </Suspense>
+                        <ClientOnly>
+                            <div className="flex items-center gap-x-2.5">
+                                <Suspense>
+                                    <NavSearchDialog />
+                                </Suspense>
 
-                            {/* Fix Hydration error */}
-                            <ClientOnly>
                                 <DarkMode />
-                            </ClientOnly>
 
-                            <CartButton />
+                                <CartButton />
 
-                            <LinksDropdown />
-                        </div>
+                                <LinksDropdown />
+                            </div>
+                        </ClientOnly>
                     </div>
 
                     {/* Large */}
-                    <div className="h-full w-full hidden lg:block">
-                        <div className="h-full flex items-center justify-between">
+                    <ClientOnly>
+                        <div className="h-full w-full hidden lg:flex items-center justify-between">
                             <Logo />
                             <Suspense>
                                 <NavSearch />
                             </Suspense>
                             <div className="flex items-center gap-x-2.5">
                                 <UserMenu />
-                                
-                                {/* Fix Hydration error */}
-                                <ClientOnly>
-                                    <DarkMode />
-                                </ClientOnly>
+
+                                <DarkMode />
 
                                 <CartButton />
                             </div>
                         </div>
-                    </div>
+                    </ClientOnly>
                 </nav>
 
                 <nav className="hidden lg:block lg:ml-auto">

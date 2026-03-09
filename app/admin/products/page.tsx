@@ -22,18 +22,18 @@ const AdminProductsPage = async () => {
     if (items.length === 0) return <EmptyList />;
 
     return (
-        <div className='w-full'>
+        <div className='w-full font-kh-kantumruy'>
             <div className='[&>div]:rounded-sm [&>div]:border'>
                 <Table>
-                    <TableCaption className='capitalize'>
-                        total products : {items.length}
+                    <TableCaption className='capitalize pb-4'>
+                        ចំនួនផលិតផលសរុប : {items.length}
                     </TableCaption>
                     <TableHeader>
                         <TableRow className='hover:bg-transparent'>
-                            <TableHead>Product Name</TableHead>
-                            <TableHead>Company</TableHead>
-                            <TableHead>Price</TableHead>
-                            <TableHead className='w-0'>Actions</TableHead>
+                            <TableHead>ឈ្មោះផលិតផល</TableHead>
+                            <TableHead>ក្រុមហ៊ុន</TableHead>
+                            <TableHead>តម្លៃ</TableHead>
+                            <TableHead className='w-0'>សកម្មភាព-(កែប្រែ ឬ លុប)</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody className="font-kh-suwannaphum">

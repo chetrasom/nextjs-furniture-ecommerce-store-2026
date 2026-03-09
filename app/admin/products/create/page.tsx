@@ -22,9 +22,9 @@ const CreateProductPage = () => {
 
     return (
         <section>
-            <div className="flex items-center gap-2 border-b pb-2.5 mb-4">
+            <div className="font-kh-kantumruy flex items-center gap-2 border-b pb-2.5 mb-4">
                 <PackagePlus className="h-5 w-5 md:h-6 md:w-6 text-primary" />
-                <h1 className="font-kh-kantumruy font-semibold text-xl md:text-2xl">
+                <h1 className="font-semibold text-xl md:text-2xl">
                     បង្កើតផលិតផលថ្មី
                 </h1>
             </div>
@@ -35,14 +35,14 @@ const CreateProductPage = () => {
                         <FormInput 
                             type='text'
                             name='name'
-                            label='Product Name'
+                            label='ឈ្មោះផលិតផល'
                             defaultValue={name}
                         />
 
                         <FormInput 
                             type='text'
                             name='company'
-                            label='Company'
+                            label='ក្រុមហ៊ុន'
                             defaultValue={company}
                         />
 
@@ -53,16 +53,16 @@ const CreateProductPage = () => {
 
                     <TextAreaInput
                         name='description'
-                        labelText='product description'
+                        labelText='ការពិពណ៌នាផលិតផល'
                         defaultValue={description}
                     />
 
                     <div className='mt-6'>
-                        <CheckBoxInput name='featured' label='featured' />
+                        <CheckBoxInput name='featured' label='ផលិតផលពិសេស' />
                     </div>
                 </div>
 
-                <SubmitButton text='Create Product' className='mt-8' />
+                <SubmitButton text='បង្កើតផលិតផលថ្មី' className='mt-8' />
             </FormContainer>
         </section>
     )

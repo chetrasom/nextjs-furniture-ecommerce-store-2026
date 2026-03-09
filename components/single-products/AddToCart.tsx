@@ -36,7 +36,7 @@ const AddToCart = ({ productId }: { productId: string }) => {
                     <input type='hidden' name='productId' value={productId} />
                     <input type='hidden' name='amount' value={amount} />
                     <SubmitButton 
-                        text='add to cart' 
+                        text='ដាក់ក្នុងកន្រ្តក' 
                         size='default' 
                         className='mt-8' 
                     />

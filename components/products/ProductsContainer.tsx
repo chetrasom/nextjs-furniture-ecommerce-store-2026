@@ -28,7 +28,8 @@ const ProductsContainer = async ({ layout, search }: ProductsContainerProps) => 
             {/* Header */}
             <div className="h-16 flex items-center justify-between border-b mt-5">
                 <h3 className="font-medium text-lg">
-                    {totalProducts} product{totalProducts > 1 && 's'}
+                    {/* {totalProducts} product{totalProducts > 1 && 's'} */}
+                    ផលិតផលចំនួន {totalProducts}
                 </h3>
                 <div className="flex items-center gap-x-4">
                     <Button
@@ -59,10 +60,10 @@ const ProductsContainer = async ({ layout, search }: ProductsContainerProps) => 
                     <div className="mt-16 flex flex-col items-center justify-center text-center text-muted-foreground">
                         <SearchX className="mb-4 h-12 w-12" />
                         <h3 className="text-2xl font-semibold">
-                            Sorry, no products matched your search
+                            សូមអភ័យទោស មិនមានផលិតផលដែលត្រូវនឹងការស្វែងរករបស់អ្នកទេ
                         </h3>
                         <p className="mt-2 text-sm">
-                            Try adjusting your filters or search keywords.
+                            សូមព្យាយាមកែប្រែតម្រង ឬពាក្យគន្លឹះស្វែងរករបស់អ្នក។
                         </p>
                     </div>
                 ) : layout === "grid" ? (

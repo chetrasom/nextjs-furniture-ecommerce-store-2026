@@ -5,9 +5,9 @@ const ImageInput = () => {
     const name = 'image';
 
     return (
-        <div className="mb-2 space-y-3">
+        <div className="mb-2 space-y-3 font-kh-kantumruy">
             <Label htmlFor={name} className='capitalize'>
-                Image
+                រូបភាពផលិតផល
             </Label>
 
             <Input 

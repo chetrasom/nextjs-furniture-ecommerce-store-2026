@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { SignInButton, SignUpButton, SignedIn, SignedOut } from '@clerk/nextjs';
 import { currentUser } from '@clerk/nextjs/server';
 import SignOutLink from "./SignOutLink";
@@ -12,25 +14,27 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-// import { LayoutDashboardIcon } from "lucide-react";
+import { LayoutDashboardIcon } from "lucide-react";
 
 const UserMenu = async () => {
     const user = await currentUser();
     const profileImage = user?.imageUrl;
 
+    const isAdmin = user?.id === process.env.NEXT_PUBLIC_ADMIN_USER_ID;
+
     return (
         <>
             <SignedOut>
-                <div className="flex flex-col-reverse gap-y-3 gap-x-2 md:flex-row md:items-center max-md:p-3">
+                <div className="font-kh-kantumruy flex flex-col-reverse gap-y-3 gap-x-2 md:flex-row md:items-center max-md:p-3">
                     <SignInButton mode='modal'>
                         <Button variant={"outline"}>
-                            Login
+                            ចូលគណនី
                         </Button>
                     </SignInButton>
 
                     <SignUpButton mode='modal'>
                         <Button>
-                            Get Started
+                            ចុះឈ្មោះ
                         </Button>
                     </SignUpButton>
                 </div>
@@ -77,12 +81,14 @@ const UserMenu = async () => {
 
                         <DropdownMenuSeparator />
 
-                        {/* <DropdownMenuItem asChild>
-                            <Link href='/admin/dashboard'>
-                                <LayoutDashboardIcon />
-                                Dashboard
-                            </Link>
-                        </DropdownMenuItem> */}
+                        {isAdmin && (
+                            <DropdownMenuItem asChild>
+                                <Link href='/admin/dashboard'>
+                                    <LayoutDashboardIcon />
+                                    ផ្ទាំងគ្រប់គ្រង
+                                </Link>
+                            </DropdownMenuItem>
+                        )}
 
                         <DropdownMenuItem>
                             <SignOutLink />

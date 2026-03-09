@@ -30,10 +30,10 @@ const SubmitReview = ({ productId }: { productId: string }) => {
         <div>
             <Button
                 size={"lg"}
-                className="capitalize rounded-full"
+                className="capitalize rounded-full font-kh-kantumruy"
                 onClick={() => setIsReviewFormVisible((prev) => !prev)}
             >
-                Write a review <ChevronDown className="size-5" />
+               បញ្ចេញមតិលើទំនិញ <ChevronDown className="size-5" />
             </Button>
 
             {isReviewFormVisible && (
@@ -59,7 +59,7 @@ const SubmitReview = ({ productId }: { productId: string }) => {
                         </div>
 
                         {/* Submit */}
-                        <SubmitButton className='mt-4' />
+                        <SubmitButton className='mt-4' text="បញ្ជូន" />
                     </FormContainer>
                 </Card>
             )}

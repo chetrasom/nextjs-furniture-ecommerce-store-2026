@@ -1,12 +1,6 @@
 'use client';
 
-import {
-    SidebarProvider,
-    SidebarInset,
-    SidebarTrigger,
-} from "@/components/ui/sidebar";
-
-import Sidebar from "./Sidebar"
+import Sidebar from "./Sidebar";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -15,7 +9,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 <div className="lg:col-span-2">
                     <Sidebar />
                 </div>
-                <div className="border relative max-h-[calc(100dvh-16px)] overflow-auto lg:col-span-10">
+                <div className="bg-muted/25 rounded-lg relative max-h-[calc(100dvh-16px)] overflow-auto lg:col-span-10">
                     <main className="p-4">{children}</main>
                 </div>
             </div>

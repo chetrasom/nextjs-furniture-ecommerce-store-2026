@@ -20,16 +20,16 @@ const CartTotals = ({ cart }: { cart: Cart }) => {
     return (
         <div>
             <Card className="p-8">
-                <CartTotalRow label="Subtotal" amount={cartTotal} />
-                <CartTotalRow label='Shipping' amount={shipping} />
-                <CartTotalRow label='Tax' amount={tax} />
+                <CartTotalRow label="តម្លៃទំនិញសរុប" amount={cartTotal} />
+                <CartTotalRow label='តម្លៃដឹកជញ្ជូន' amount={shipping} />
+                <CartTotalRow label='ពន្ធ' amount={tax} />
                 <CardTitle className='mt-5'>
-                    <CartTotalRow label='Order Total' amount={orderTotal} lastRow />
+                    <CartTotalRow label='ចំនួនទឹកប្រាក់សរុប' amount={orderTotal} lastRow />
                 </CardTitle>
             </Card>
 
             <FormContainer action={createOrderAction}>
-                <SubmitButton text='Place Order' className='w-full mt-8' />
+                <SubmitButton text='ធ្វើការបញ្ជាទិញ' className='w-full h-11 mt-8' />
             </FormContainer>
         </div>
     )
@@ -46,7 +46,7 @@ function CartTotalRow({
 }) {
     return (
         <>
-            <div className="flex items-center justify-between text-sm py-2">
+            <div className="flex items-center justify-between">
                 <span>{label}</span>
                 <span>{formatCurrency(amount)}</span>
             </div>

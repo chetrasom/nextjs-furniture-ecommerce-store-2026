@@ -18,8 +18,8 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
         <section className='lg:pt-20 2xl:pt-22'>
             <BreadCrumb
                 items={[
-                    { label: "Home", href: "/" },
-                    { label: "Products", href: "/products" },
+                    { label: "ទំព័រដើម", href: "/" },
+                    { label: "ហាងទំនិញ", href: "/products" },
                 ]}
             />
 

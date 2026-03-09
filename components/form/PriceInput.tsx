@@ -9,9 +9,9 @@ type FormInputNumberProps = {
 
 const PriceInput = ({ defaultValue }: FormInputNumberProps) => {
     return (
-        <div className="mb-2 space-y-3">
+        <div className="mb-2 space-y-3 font-kh-kantumruy">
             <Label htmlFor='price' className='capitalize'>
-                Price ($)
+                តម្លៃ ($)
             </Label>
 
             <Input 

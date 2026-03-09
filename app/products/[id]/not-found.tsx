@@ -14,16 +14,16 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
     return (
-        <section className="min-h-screen flex items-center justify-center">
+        <section className="min-h-screen flex items-center justify-center font-kh-kantumruy">
             <div className="text-center space-y-4">
                 <h1 className="text-2xl font-semibold">
-                    Product not found
+                    មិនមានផលិតផល
                 </h1>
                 <p className="text-muted-foreground">
-                    The product you’re looking for doesn’t exist.
+                    ផលិតផលដែលអ្នកកំពុងស្វែងរកមិនមាននៅទីនេះទេ។
                 </p>
                 <Button asChild variant={"secondary"} size={"lg"}>
-                    <Link href="/products">Back to Shop</Link>
+                    <Link href="/products">ត្រឡប់ទៅហាងទំនិញ</Link>
                 </Button>
             </div>
         </section>

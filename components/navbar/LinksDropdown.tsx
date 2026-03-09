@@ -54,13 +54,13 @@ const LinksDropdown = async () => {
                 </Button>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="min-w-40" align="end">
+            <DropdownMenuContent className="min-w-40 font-kh-kantumruy" align="end">
                 <SignedOut>
                     <DropdownMenuItem asChild className="w-full">
                         <SignInButton mode='modal'>
                             <button aria-label='login' className='w-full text-left bg-red-300'>
                                 <LogIn className="size-4" />
-                                Login
+                                ចូលគណនី
                             </button>
                         </SignInButton>
                     </DropdownMenuItem>
@@ -71,7 +71,7 @@ const LinksDropdown = async () => {
                         <SignUpButton mode='modal'>
                             <button aria-label='register' className='w-full text-left bg-red-300'>
                                 <UserPlus className="size-4" />
-                                Register
+                                ចុះឈ្មោះ
                             </button>
                         </SignUpButton>
                     </DropdownMenuItem>
@@ -110,7 +110,7 @@ const LinksDropdown = async () => {
                         return (
                             <DropdownMenuItem key={link.href}>
                                 <Link href={link.href} className='capitalize w-full'>
-                                    {link.label}
+                                    {link.lang_kh}
                                 </Link>
                             </DropdownMenuItem>
                         );

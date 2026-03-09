@@ -27,19 +27,19 @@ const NavbarTop = () => {
         )}>
             <div className="flex items-center gap-x-4">
                 <TagIcon className="w-5 h-5 text-primary" />
-                <span>Only this weeks</span>
+                <span>សម្រាប់សប្តាហ៍នេះប៉ុណ្ណោះ</span>
                 <span className="text-primary">-20%</span>
             </div>
 
             <div className="flex items-center gap-x-2">
                 <SmartphoneIcon className="w-5 h-5 text-primary" />
-                <span>Need help?</span>
+                <span>សាកសួរព័ត៌មានបន្ថែម</span>
                 <span>+855 123 456 789</span>
             </div>
 
             <div className="flex items-center gap-x-4">
-                <Link href={"/about"} className="hover:text-primary transition-colors">About us</Link>
-                <Link href={"/products"} className="hover:text-primary transition-colors">Shop</Link>
+                <Link href={"/about"} className="hover:text-primary transition-colors">អំពីយើង</Link>
+                <Link href={"/products"} className="hover:text-primary transition-colors">ទិញផលិតផល</Link>
 
                 <Link href={"#"}>
                     <FaTelegram className="w-6 h-6 ring ring-muted-foreground ring-offset-1 rounded-full text-primary hover:ring-primary transition-colors" />

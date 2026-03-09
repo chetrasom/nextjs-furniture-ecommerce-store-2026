@@ -15,8 +15,10 @@ const Sidebar = () => {
     const pathname = usePathname();
 
     return (
-        <aside className="bg-muted">
-            <span className="text-neutral-400 text-sm block mb-2">Home</span>
+        <aside className="font-kh-kantumruy">
+            <span className="text-neutral-400 text-sm block mb-2">
+                មុខងារគ្រប់គ្រង
+            </span>
 
             {adminLinks.map((link) => {
                 const isActivePage = link.href === pathname;
@@ -31,7 +33,7 @@ const Sidebar = () => {
                         variant={variant}
                     >
                         <Link href={link.href}>
-                            {link.label}
+                            {link.lang_kh}
                         </Link>
                     </Button>
                 )

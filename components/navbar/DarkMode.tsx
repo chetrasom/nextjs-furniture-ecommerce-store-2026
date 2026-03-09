@@ -29,15 +29,15 @@ const DarkMode = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => setTheme("light")}>
-                    Light
+                    ផ្ទៃពន្លឺ
                     {theme === 'light' && <CheckIcon className="ms-auto text-primary" />}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("dark")}>
-                    Dark
+                    ផ្ទៃងងឹត
                     {theme === 'dark' && <CheckIcon className="ms-auto text-primary" />}
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setTheme("system")}>
-                    System
+                    ផ្ទៃលំនាំដើម
                     {theme === 'system' && <CheckIcon className="ms-auto text-primary" />}
                 </DropdownMenuItem>
             </DropdownMenuContent>

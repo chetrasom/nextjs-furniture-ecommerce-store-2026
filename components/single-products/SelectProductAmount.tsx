@@ -6,6 +6,8 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 
+import { ShoppingCartIcon } from 'lucide-react';
+
 // Types
 export enum Mode {
     SingleProduct = 'singleProduct',
@@ -32,7 +34,10 @@ const SelectProductAmount = (props: SelectProductAmountProps | SelectCartItemAmo
 
     return (
         <div>
-            <h4 className='mb-2'>Amount:</h4>
+            <div className='flex items-center gap-1.5 mb-2'>
+                <ShoppingCartIcon className='w-5 h-5' />
+                <h4>ចំនួន:</h4>
+            </div>
             <Select
                 defaultValue={amount.toString()}
                 onValueChange={(value) => setAmount(Number(value))}

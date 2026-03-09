@@ -32,8 +32,18 @@ const ProductRating = async ({ productId }: ProductRatingProps) => {
                 ))}
 
             {/* Rating number and count */}
+            {/* <span className="ml-1">
+                {rating.toFixed(1)} ({count} អ្នកវាយតម្លៃ)/
+            </span> */}
+
             <span className="ml-1">
-                {rating.toFixed(1)} ({count} reviews)
+                {rating === 0 ? (
+                    <>({count} មិនទាន់មានអ្នកវាយតម្លៃ)</>
+                ) : (
+                    <>
+                    {rating.toFixed(1)} ({count} អ្នកវាយតម្លៃ)
+                    </>
+                )}
             </span>
         </span>
     );

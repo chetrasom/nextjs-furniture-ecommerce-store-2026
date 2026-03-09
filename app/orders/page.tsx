@@ -24,8 +24,8 @@ const OrdersPage = async () => {
         <section className='lg:pt-20 2xl:pt-22'>
             <BreadCrumb
                 items={[
-                    { label: "Home", href: "/" },
-                    { label: "Orders", href: "/orders" },
+                    { label: "ទំព័រដើម", href: "/" },
+                    { label: "ការបញ្ជាទិញ", href: "/orders" },
                 ]}
             />
 
@@ -34,16 +34,21 @@ const OrdersPage = async () => {
                 subtitle="បញ្ជីការបញ្ជាទិញទាំងអស់របស់អ្នក"
             />
 
-            <div>
+            <div className='font-kh-kantumruy'>
                 <Table>
-                    <TableCaption>Total orders : {orders.length}</TableCaption>
+                    <TableCaption>ការបញ្ជាទិញសរុប : {orders.length}</TableCaption>
                     <TableHeader>
                         <TableRow>
-                            <TableHead>Products</TableHead>
+                            {/* <TableHead>Products</TableHead>
                             <TableHead>Order Total</TableHead>
                             <TableHead>Tax</TableHead>
                             <TableHead>Shipping</TableHead>
-                            <TableHead>Date</TableHead>
+                            <TableHead>Date</TableHead> */}
+                            <TableHead>មុខទំនិញ</TableHead>
+                            <TableHead>ចំនួនទឹកប្រាក់សរុប</TableHead>
+                            <TableHead>ពន្ធ</TableHead>
+                            <TableHead>ការដឹកជញ្ជូន</TableHead>
+                            <TableHead>កាលបរិច្ឆេទ</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>

@@ -33,7 +33,7 @@ const HeroCarousel = () => {
     }, [api]);
 
     return (
-        <div className="mx-auto">
+        <div className="mx-auto font-kh-kantumruy">
             <Carousel
                 className="mx-2 w-full"
                 opts={{ loop: true }}

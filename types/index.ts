@@ -3,6 +3,7 @@ import { Prisma } from "@/app/generated/prisma/client";
 export type NavLink = {
     href: string;
     label: string;
+    lang_kh?: string;
 };
 
 export type Hero = {

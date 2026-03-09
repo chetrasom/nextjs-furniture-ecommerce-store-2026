@@ -19,8 +19,8 @@ const ReviewsPage = async () => {
         <section className="lg:pt-20 2xl:pt-22">
             <BreadCrumb
                 items={[
-                    { label: "Home", href: "/" },
-                    { label: "My Reviews", href: "/reviews" },
+                    { label: "ទំព័រដើម", href: "/" },
+                    { label: "ទំនិញវាយតម្លៃ", href: "/reviews" },
                 ]}
             />
 
@@ -49,8 +49,8 @@ const ReviewsPage = async () => {
         <section className='lg:pt-20 2xl:pt-22'>
             <BreadCrumb
                 items={[
-                    { label: "Home", href: "/" },
-                    { label: "My Reviews", href: "/reviews" },
+                    { label: "ទំព័រដើម", href: "/" },
+                    { label: "ទំនិញវាយតម្លៃ", href: "/reviews" },
                 ]}
             />
 

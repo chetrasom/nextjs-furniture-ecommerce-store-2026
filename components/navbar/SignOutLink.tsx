@@ -7,7 +7,7 @@ import { LogOut } from "lucide-react";
 
 const SignOutLink = () => {
     const handleLogout = () => {
-        toast.success("Logging out...");
+        toast.success("កំពុងចាកចេញ...");
     };
 
     return (
@@ -18,7 +18,7 @@ const SignOutLink = () => {
                 onClick={handleLogout}
             >
                 <LogOut className="size-4" />
-                Logout
+                ចាកចេញ
             </Link>
         </SignOutButton>
     )
