@@ -17,7 +17,7 @@ import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // Constants
-import { links } from "@/data";
+import { publicLinks, privateLinks } from "@/data";
 
 // Assets
 import { CircleUserIcon, LogIn, UserPlus, LucideAlignRight } from "lucide-react";
@@ -28,6 +28,9 @@ const LinksDropdown = async () => {
 
     const { userId } = await auth();
     const isAdmin = userId === process.env.NEXT_PUBLIC_ADMIN_USER_ID;
+
+    // Determine which links to show
+    const linksToShow = userId ? privateLinks : publicLinks;
 
     return (
         <DropdownMenu>
@@ -104,7 +107,8 @@ const LinksDropdown = async () => {
 
                     <DropdownMenuSeparator />
 
-                    {links.map((link) => {
+                    {linksToShow.map((link) => {
+                        // hide dashboard if not admin
                         if (link.label === 'dashboard' && !isAdmin) return null;
 
                         return (

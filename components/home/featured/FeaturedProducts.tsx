@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // actions
 import { fetchFeaturedProducts } from "@/lib/actions";
 
@@ -17,6 +19,15 @@ const FeaturedProducts = async () => {
     return (
         <>
             <ProductsGrid products={products} />
+            <div className="pt-14 flex justify-center">
+                <Link
+                    href="/products"
+                    className="px-6 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition flex items-center gap-2 max-w-max"
+                >
+                    មើលផលិតផលទាំងអស់
+                    <span className="text-xl animate-bounce">→</span>
+                </Link>
+            </div>
         </>
     )
 }

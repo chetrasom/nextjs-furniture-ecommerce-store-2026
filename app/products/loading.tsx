@@ -4,31 +4,35 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const Loading = () => {
     return (
-        <section className="lg:pt-20 2xl:pt-22 space-y-6">
-            {/* Breadcrumb */}
-            <Skeleton className="h-4 w-48" />
+        <section className="w-full min-h-screen py-8 px-4 md:px-6 lg:px-8 font-kh-suwannaphum lg:pt-20 2xl:pt-22">
+            <div className="w-full max-w-7xl mx-auto">
+                <div className="grid gap-8 md:grid-cols-2">
 
-            {/* Top toolbar */}
-            <div className="flex items-center justify-between">
-                <Skeleton className="h-4 w-24" />
-                <div className="flex gap-3">
-                    <Skeleton className="h-8 w-20" />
-                    <Skeleton className="h-8 w-20" />
-                </div>
-            </div>
+                {/* Image skeleton */}
+                <Skeleton className="w-full h-72 md:h-96 rounded-lg" />
 
-            {/* Products grid */}
-            <div 
-                // className="grid grid-cols-2 md:grid-cols-4 gap-4"
-                className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:grid-cols-4"
-            >
-                {Array.from({ length: 8 }).map((_, i) => (
-                    <div key={i} className="space-y-3">
-                        <Skeleton className="h-48 w-full rounded-lg" />
-                        <Skeleton className="h-4 w-3/4" />
-                        <Skeleton className="h-4 w-1/2" />
+                {/* Text skeleton */}
+                <div className="space-y-4">
+                    <Skeleton className="h-8 w-3/4 rounded-md" />
+                    <Skeleton className="h-5 w-1/2 rounded-md" />
+
+                    <div className="flex items-center justify-between lg:justify-start lg:gap-x-6">
+                    <Skeleton className="h-5 w-1/4 rounded-md" />
+
+                    <div className="flex gap-x-2">
+                        <Skeleton className="h-8 w-8 rounded-full" />
+                        <Skeleton className="h-8 w-8 rounded-full" />
                     </div>
-                ))}
+                    </div>
+
+                    <Skeleton className="h-8 w-1/3 rounded-md" />
+                    <Skeleton className="h-5 w-full rounded-md" />
+                    <Skeleton className="h-5 w-full rounded-md" />
+                    <Skeleton className="h-5 w-1/2 rounded-md" />
+                    <Skeleton className="h-12 w-full rounded-md" />
+                </div>
+
+                </div>
             </div>
         </section>
     )

@@ -11,7 +11,40 @@ import { NavLink, Hero } from "@/types";
 //     { href: '/admin/sales', label: 'dashboard' },
 // ];
 
+// export const links: NavLink[] = [
+//     { href: '/', label: 'home', lang_kh: 'ទំព័រដើម' },
+//     { href: '/about', label: 'about', lang_kh: 'អំពីយើង' },
+//     { href: '/products', label: 'products', lang_kh: 'ហាងទំនិញ' },
+//     { href: '/favorites', label: 'favorites', lang_kh: 'ចំណូលចិត្ត' },
+//     { href: '/reviews', label: 'reviews', lang_kh: 'ការវាយតម្លៃ' },
+//     { href: '/cart', label: 'cart', lang_kh: 'កន្ត្រកទំនិញ' },
+//     { href: '/orders', label: 'orders', lang_kh: 'ការបញ្ជាទិញ' },
+//     { href: '/admin/sales', label: 'dashboard', lang_kh: 'ផ្ទាំងគ្រប់គ្រង' },
+// ];
+
 export const links: NavLink[] = [
+    { href: "/", label: "home", lang_kh: "ទំព័រដើម", auth: "all" },
+    { href: "/about", label: "about", lang_kh: "អំពីយើង", auth: "all" },
+    { href: "/products", label: "products", lang_kh: "ហាងទំនិញ", auth: "all" },
+    { href: "/favorites", label: "favorites", lang_kh: "ចំណូលចិត្ត", auth: "user" },
+    { href: "/reviews", label: "reviews", lang_kh: "ការវាយតម្លៃ", auth: "user" },
+    { href: "/cart", label: "cart", lang_kh: "កន្ត្រកទំនិញ", auth: "user" },
+    { href: "/orders", label: "orders", lang_kh: "ការបញ្ជាទិញ", auth: "user" },
+    { href: "/admin/sales", label: "dashboard", lang_kh: "ផ្ទាំងគ្រប់គ្រង", auth: "admin" },
+    { href: "/login", label: "login", lang_kh: "ចូលគណនី", auth: "guest" },
+    { href: "/register", label: "register", lang_kh: "បង្កើតគណនី", auth: "guest" },
+    { href: "/logout", label: "logout", lang_kh: "ចាកចេញ", auth: "user" }, // shown to user/admin
+];
+
+export const publicLinks = [
+    { href: '/', label: 'home', lang_kh: 'ទំព័រដើម' },
+    { href: '/about', label: 'about', lang_kh: 'អំពីយើង' },
+    { href: '/products', label: 'products', lang_kh: 'ហាងទំនិញ' },
+    // { href: '/login', label: 'login', lang_kh: 'ចូលគណនី' },
+    // { href: '/register', label: 'register', lang_kh: 'បង្កើតគណនី' },
+];
+
+export const privateLinks = [
     { href: '/', label: 'home', lang_kh: 'ទំព័រដើម' },
     { href: '/about', label: 'about', lang_kh: 'អំពីយើង' },
     { href: '/products', label: 'products', lang_kh: 'ហាងទំនិញ' },
@@ -19,7 +52,8 @@ export const links: NavLink[] = [
     { href: '/reviews', label: 'reviews', lang_kh: 'ការវាយតម្លៃ' },
     { href: '/cart', label: 'cart', lang_kh: 'កន្ត្រកទំនិញ' },
     { href: '/orders', label: 'orders', lang_kh: 'ការបញ្ជាទិញ' },
-    { href: '/admin/sales', label: 'dashboard', lang_kh: 'ផ្ទាំងគ្រប់គ្រង' },
+    { href: '/admin/sales', label: 'dashboard', lang_kh: 'ផ្ទាំងគ្រប់គ្រង' }, // admin optional
+    // { href: '/logout', label: 'logout', lang_kh: 'ចាកចេញ' },
 ];
 
 export const heroes: Hero[] = [

@@ -121,6 +121,22 @@
   --sidebar-ring: oklch(0.408 0.123 38.172);
 }
 
+/* Structure a Next.js layout with navbar, main content, and footer properly, */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+/* ================= */
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -137,4 +153,8 @@
 
 .containerCustom {
   @apply container mx-auto px-4 md:px-6 lg:px-8
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

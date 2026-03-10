@@ -4,6 +4,7 @@ export type NavLink = {
     href: string;
     label: string;
     lang_kh?: string;
+    auth?: 'all' | 'guest' | 'user' | 'admin'; // restrict possible values
 };
 
 export type Hero = {

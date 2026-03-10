@@ -9,6 +9,7 @@ import Providers from "./providers";
 // Components
 import ContainerWrapper from "@/components/global/ContainerWrapper";
 import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/Footer";
 
 // Fonts
 const geistSans = Geist({
@@ -52,12 +53,18 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${kantumruy.variable} ${suwannaphum.variable} antialiased`}>
+        <body className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${kantumruy.variable} ${suwannaphum.variable} antialiased flex flex-col min-h-screen`}>
           <Providers>
             <Navbar />
-            <ContainerWrapper className="overflow-hidden pt-28 pb-16 lg:pt-32 xl:pt-40">
-              {children}
-            </ContainerWrapper>
+            
+            <main className="flex-1">
+              <ContainerWrapper className="overflow-hidden pt-28 pb-16 lg:pt-32 xl:pt-40">
+                {children}
+              </ContainerWrapper>
+            </main>
+
+            <Footer />
+
           </Providers>
         </body>
       </html>

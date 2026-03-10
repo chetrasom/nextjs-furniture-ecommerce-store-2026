@@ -8,6 +8,10 @@ import SectionTitle from "@/components/global/SectionTitle";
 // Components
 import Hero from "@/components/home/hero/Hero";
 import FeaturedProducts from "@/components/home/featured/FeaturedProducts";
+import WhyChooseUs from "@/components/home/WhyChooseUs";
+import SpecialPromotion from "@/components/home/SpecialPromotion";
+import CustomerReviews from "@/components/home/CustomerReviews";
+import InstagramSection from "@/components/home/InstagramSection";
 
 const Homepage = () => {
     return (
@@ -24,6 +28,11 @@ const Homepage = () => {
                     <FeaturedProducts />
                 </Suspense>
             </section>
+
+            <WhyChooseUs />
+            <SpecialPromotion />
+            <CustomerReviews />
+            <InstagramSection />
         </>
     )
 }

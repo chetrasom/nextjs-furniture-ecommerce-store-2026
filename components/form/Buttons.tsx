@@ -93,7 +93,7 @@ export const CardSignInButton = () => {
                 type='button'
                 size='icon'
                 variant='outline'
-                className='p-2 cursor-pointer'
+                className='p-2 cursor-pointer rounded-full bg-secondary dark:bg-secondary'
                 asChild
             >
                 <FaRegHeart />

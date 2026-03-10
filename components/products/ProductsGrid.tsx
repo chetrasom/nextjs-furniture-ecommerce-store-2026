@@ -30,7 +30,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
                         <Link href={`/products/${productId}`}>
                             <Card className='pt-0 overflow-hidden gap-y-2 md:gap-6'>
                                 <CardContent className='px-0'>
-                                    <figure className='relative h-40 md:h-48 overflow-hidden'>
+                                    <figure className='relative h-40 md:h-48 overflow-hidden border-b'>
                                         <Image 
                                             src={image}
                                             alt={`banner-${name}`}

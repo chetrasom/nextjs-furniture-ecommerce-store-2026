@@ -78,7 +78,11 @@ export async function generateMetadata({ params }: SingleProductPageProps) {
     };
 };
 
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 const SingleProductPage = async ({ params }: SingleProductPageProps) => {
+    await delay(1500); // 1.5 seconds
+    
     const productId = (await params).id;
     const product = await fetchSingleProduct(productId);
     const { name, image, description, price } = product;

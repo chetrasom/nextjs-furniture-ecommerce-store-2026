@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 
 // Data
-import { links } from "@/data";
+import { links, publicLinks, privateLinks } from "@/data";
 
 // Assets
 import { BookmarkIcon, TagIcon } from "lucide-react";
@@ -29,13 +29,15 @@ const NavbarBottom = () => {
     // Prevent hydration mismatch
     if (!isLoaded) return null;
 
-    // UI-only admin check (matches your server logic)
-    // const isAdmin = userId === process.env.ADMIN_USER_ID;
+    // admin check
     const isAdmin = userId === process.env.NEXT_PUBLIC_ADMIN_USER_ID;
+
+    // Links to show when user is logged in, not logged in, and admin
+    const linksToShow = !userId ? publicLinks : privateLinks;
 
     return (
         <div className="bg-secondary rounded-md flex items-center justify-between px-4 h-16">
-            <div className="flex items-center gap-x-6">
+            {/* <div className="flex items-center gap-x-6">
                 {links.map((item) => {
                     if (item.label === 'dashboard' && !isAdmin) return null;
 
@@ -53,6 +55,27 @@ const NavbarBottom = () => {
                             {item.lang_kh}
                         </Link>
                     )
+                })}
+            </div> */}
+
+            <div className="flex items-center gap-x-6">
+                {linksToShow.map((item) => {
+                    if (item.label === "dashboard" && !isAdmin) return null; // optional for admin
+
+                    return (
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            className={cn(
+                            "capitalize tracking-wide",
+                            item.href === "/"
+                                ? pathname === "/"
+                                : pathname.startsWith(item.href) && "text-primary"
+                            )}
+                        >
+                            {item.lang_kh}
+                        </Link>
+                    );
                 })}
             </div>
 
