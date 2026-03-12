@@ -1,10 +1,10 @@
+
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ShoppingBag } from "lucide-react";
 import { fetchCartItemCount } from "@/lib/actions";
 
 const CartButton = async () => {
-    // const numItemsInCart = 9;
     const numItemsInCart = await fetchCartItemCount();
 
     return (
@@ -24,4 +24,4 @@ const CartButton = async () => {
     )
 }
 
-export default CartButton
+export default CartButton;
