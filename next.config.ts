@@ -18,6 +18,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '4mb', // allow images up to 4MB
+    },
+  },
 };
 
 export default nextConfig;
