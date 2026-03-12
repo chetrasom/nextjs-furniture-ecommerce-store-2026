@@ -50,33 +50,61 @@ export async function generateMetadata({ params }: SingleProductPageProps) {
             title: "Product Not Found | Furniture Store",
             description: "The product you are looking for does not exist. Browse our premium coffee selection.",
             openGraph: {
-                title: "Product Not Found | Furniture Store",
-                description: "The product you are looking for does not exist. Browse our premium coffee selection.",
-                // images: [
-                //     {
-                //         url: "/images/og-image.jpg", // Replace with your OG image URL
-                //         alt: "Furniture Store - Best Coffee Products Online",
-                //     },
-                // ],
+                title: "Product Not Found | Furnova Furniture Store",
+                description: "The product you are looking for does not exist. Browse our premium furniture collection.",
+                images: [
+                    {
+                        url: '/og-image.png',
+                        width: 1200,
+                        height: 630,
+                        alt: 'Furnova Furniture Store',
+                    },
+                ],
             },
         };
     }
 
     return {
-        title: `${product.name} | Furniture Store`,
-        description: product.description,
+        title: `${product.name} | Furnova Furniture Store`,
+        description: product.description.slice(0, 160),
         openGraph: {
-            title: `${product.name} | Furniture Store`,
-            description: product.description,
-            // images: [
-            //     {
-            //         url: product.imageUrl,
-            //         alt: product.name,
-            //     },
-            // ],
+            title: product.name,
+            description: product.description.slice(0, 160),
+            url: `https://nextjs-furniture-ecommerce-store-20.vercel.app//${product.id}`,
+            siteName: 'Furnova Furniture Store',
+            images: [
+                {
+                    url: product.image, // Supabase image URL
+                    width: 800,
+                    height: 600,
+                    alt: product.name,
+                },
+            ],
         },
     };
 };
+
+// export async function generateMetadata({ params }) {
+//   const product = await fetchProduct(params.id);
+//   return {
+//     title: `${product.name} | Furnova Furniture Store`,
+//     description: product.description.slice(0, 160),
+//     openGraph: {
+//       title: product.name,
+//       description: product.description.slice(0, 160),
+//       url: `https://yourdomain.com/product/${product.id}`,
+//       siteName: 'Furnova Furniture Store',
+//       images: [
+//         {
+//           url: product.image, // your Supabase image URL
+//           width: 800,
+//           height: 600,
+//           alt: product.name,
+//         },
+//       ],
+//     },
+//   };
+// }
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
