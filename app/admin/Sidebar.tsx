@@ -16,8 +16,8 @@ const Sidebar = () => {
 
     return (
         <aside className="font-kh-kantumruy">
-            <span className="text-neutral-400 text-sm block mb-2">
-                មុខងារគ្រប់គ្រង
+            <span className="hidden text-neutral-400 text-sm block mb-2 lg:block">
+                មុខងារគ្រប់គ្រង​
             </span>
 
             {adminLinks.map((link) => {
