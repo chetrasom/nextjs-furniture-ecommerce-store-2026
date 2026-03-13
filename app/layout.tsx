@@ -41,21 +41,29 @@ const suwannaphum = Suwannaphum({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://nextjs-furniture-ecommerce-store-20.vercel.app'),
+
   title: 'Furnova Furniture Store',
   description: 'Shop modern furniture online with fast delivery and great prices',
+
+  alternates: {
+    canonical: '/',
+  },
+
   icons: {
     icon: ["/favicon.ico?v=1"],
     apple: ["/apple-touch-icon.png?v=1"],
     shortcut: ["/apple-touch-icon.png"],
   },
+
   openGraph: {
     title: 'Furnova Furniture Store',
     description: 'Shop modern furniture online with fast delivery and great prices',
-    url: 'https://nextjs-furniture-ecommerce-store-20.vercel.app/',
+    url: '/',
     siteName: 'Furnova Furniture Store',
     images: [
       {
-        url: '/og-image.png', // place this file in your public/ folder
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Furnova Furniture Store',
@@ -65,6 +73,32 @@ export const metadata: Metadata = {
     type: 'website',
   },
 };
+
+// export const metadata: Metadata = {
+//   title: 'Furnova Furniture Store',
+//   description: 'Shop modern furniture online with fast delivery and great prices',
+//   icons: {
+//     icon: ["/favicon.ico?v=1"],
+//     apple: ["/apple-touch-icon.png?v=1"],
+//     shortcut: ["/apple-touch-icon.png"],
+//   },
+//   openGraph: {
+//     title: 'Furnova Furniture Store',
+//     description: 'Shop modern furniture online with fast delivery and great prices',
+//     url: 'https://nextjs-furniture-ecommerce-store-20.vercel.app/',
+//     siteName: 'Furnova Furniture Store',
+//     images: [
+//       {
+//         url: '/og-image.png', // place this file in your public/ folder
+//         width: 1200,
+//         height: 630,
+//         alt: 'Furnova Furniture Store',
+//       },
+//     ],
+//     locale: 'en_US',
+//     type: 'website',
+//   },
+// };
 
 
 export default function RootLayout({
