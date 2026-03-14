@@ -224,7 +224,8 @@ export const deleteProductAction = async (prevState: { productId: string }) => {
 
         revalidatePath('/admin/products');
 
-        return { message: 'Product Removed' };
+        // return { message: 'Product Removed' };
+        return { message: 'ផលិតផលត្រូវបានដកចេញ' };
     } catch (error) {
         return renderError(error);
     }
@@ -266,7 +267,8 @@ export const updateProductAction = async (prevState: unknown, formData: FormData
 
         revalidatePath(`/admin/products/${productId}/edit`);
 
-        return { message: 'Product updated successfully' };
+        // return { message: 'Product updated successfully' };
+        return { message: 'ផលិតផលត្រូវបានការកែប្រែបច្ចុប្បន្នភាពដោយជោគជ័យ' };
     } catch (error) {
         return renderError(error);
     }
@@ -295,7 +297,8 @@ export const updateProductImageAction = async (prevState: unknown, formData: For
 
         revalidatePath(`/admin/products/${productId}/edit`);
         
-        return { message: 'Product Image updated successfully' };
+        // return { message: 'Product Image updated successfully' };
+        return { message: 'រូបភាពផលិតផលត្រូវបានកែប្រែបច្ចុប្បន្នភាពដោយជោគជ័យ' };
     } catch (error) {
         return renderError(error);
     }
@@ -347,7 +350,8 @@ export const toggleFavoriteAction = async (prevState: {
 
         revalidatePath(pathname);
 
-        return { message: favoriteId ? 'Removed from Faves' : 'Added to Faves' };
+        // return { message: favoriteId ? 'Removed from Faves' : 'Added to Faves' };
+        return { message: favoriteId ? 'ដកចេញពីចំណូលចិត្ត' : 'បន្ថែមទៅក្នុងចំណូលចិត្ត' };
     } catch (error) {
         return renderError(error);
     }
@@ -393,7 +397,8 @@ export const createReviewAction = async (
         // single detail path
         revalidatePath(`/products/${validatedFields.productId}`);
 
-        return { message: 'Review submitted successfully' };
+        // return { message: 'Review submitted successfully' };
+        return { message: 'ការវាយតម្លៃត្រូវបានដាក់ស្នើដោយជោគជ័យ' };
     } catch (error) {
         return renderError(error);
     }

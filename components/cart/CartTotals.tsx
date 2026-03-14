@@ -1,9 +1,10 @@
-
+import Link from "next/link";
 // Components
 import { Card, CardTitle } from "../ui/card";
 import { Separator } from "../ui/separator";
 import FormContainer from "../form/FormContainer";
 import SubmitButton from "../form/Buttons";
+import { Button } from "../ui/button";
 
 // Action
 import { createOrderAction } from "@/lib/actions";
@@ -28,9 +29,14 @@ const CartTotals = ({ cart }: { cart: Cart }) => {
                 </CardTitle>
             </Card>
 
-            <FormContainer action={createOrderAction}>
-                <SubmitButton text='ធ្វើការបញ្ជាទិញ' className='w-full h-11 mt-8' />
-            </FormContainer>
+            <div className="space-y-4">
+                <FormContainer action={createOrderAction}>
+                    <SubmitButton text='ធ្វើការបញ្ជាទិញ' className='w-full h-11 mt-8' />
+                </FormContainer>
+                <Button asChild variant={"secondary"} className="w-full h-11">
+                    <Link href="/products">រកមើលផលិតផលបន្ថែម</Link>
+                </Button>
+            </div>
         </div>
     )
 };

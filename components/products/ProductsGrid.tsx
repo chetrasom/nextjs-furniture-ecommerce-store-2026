@@ -37,7 +37,7 @@ const ProductsGrid = ({ products }: ProductsGridProps) => {
                                             fill
                                             sizes='(max-width:768px) 100vw,(max-width:1200px) 50vw,33vw'
                                             priority
-                                            className='w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500'
+                                            className='w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500'
                                         />
                                     </figure>
                                 </CardContent>
